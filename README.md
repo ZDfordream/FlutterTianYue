@@ -1,16 +1,31 @@
-# tianyue
+# 天阅Flutter
 
-A new Flutter application.
+## screen shot
 
-## Getting Started
+<img src="screenshot/android_0.png">
 
-This project is a starting point for a Flutter application.
+<img src="screenshot/android_1.png">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="screenshot/android_2.png">
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+## Setup
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repo
+
+2. flutter run
+
+## Dependency
+
+* [carousel_slider](https://pub.flutter-io.cn/packages/carousel_slider)
+* [cached_network_image](https://pub.flutter-io.cn/packages/cached_network_image)
+* [shared_preferences](https://pub.flutter-io.cn/packages/shared_preferences)
+* [flutter_webview_plugin](https://pub.flutter-io.cn/packages/flutter_webview_plugin)
+* [share](https://pub.flutter-io.cn/packages/share)
+
+## 简介
+
+这是一个用Flutter写的阅读类app。
+
+我试着让这个Demo的结构尽量接近实际项目，同时使用比较简单方式去实现功能。这样可以让刚接触Flutter的人更够容易理解代码。
+
+App中的网络请求均通过一个名为**Request**的工具类。在Request内部，通过**本地mock**方式，获取模拟数据。

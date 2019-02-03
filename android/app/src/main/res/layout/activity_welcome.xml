@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".AboutActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:lineSpacingExtra="5dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000"
+        android:text="天阅是一款采用flutter编写的阅读app，主要涉及到flutter自定义组件，与原生的通信，跳转原生界面" />
+
+</android.support.constraint.ConstraintLayout>
