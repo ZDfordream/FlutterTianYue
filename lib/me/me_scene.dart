@@ -90,7 +90,7 @@ class MeScene extends StatelessWidget {
             iconName: 'img/me_feedback.png',
             onPressed: () {
               AppNavigator.pushWeb(
-                  context, 'https://github.com/ZDfordream', 'Github');
+                  context, 'https://github.com/ZDfordream/TianYueFlutter', 'Github');
             },
           ),
         ],

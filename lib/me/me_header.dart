@@ -11,7 +11,7 @@ class MeHeader extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (UserManager.instance.isLogin) {
-          AppNavigator.pushWeb(context, 'https://github.com/ZDfordream', 'Github');
+          AppNavigator.pushWeb(context, 'https://github.com/ZDfordream/TianYueFlutter', 'Github');
         } else {
           AppNavigator.pushLogin(context);
         }
