@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tianyue/public.dart';
 
-import 'package:tianyue/home/home_scene.dart';
-import 'package:tianyue/bookshelf/bookshelf_scene.dart';
+import 'package:tianyue/book_home/home_scene.dart';
+import 'package:tianyue/comic_home/comic_home_scene.dart';
 import 'package:tianyue/me/me_scene.dart';
 
 class RootScene extends StatefulWidget {
@@ -17,13 +17,13 @@ class RootSceneState extends State<RootScene> {
   int _tabIndex = 1;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
-    Image.asset('img/tab_home_n.png'),
-    Image.asset('img/tab_bookshelf_n.png'),
+    Image.asset('img/tab_comic_home_n.png'),
+    Image.asset('img/tab_book_home_n.png'),
     Image.asset('img/tab_mine_n.png'),
   ];
   List<Image> _tabSelectedImages = [
-    Image.asset('img/tab_home_p.png'),
-    Image.asset('img/tab_bookshelf_p.png'),
+    Image.asset('img/tab_home_comic_p.png'),
+    Image.asset('img/tab_book_home_p.png'),
     Image.asset('img/tab_mine_p.png'),
   ];
 
@@ -72,7 +72,7 @@ class RootSceneState extends State<RootScene> {
     return Scaffold(
       body: IndexedStack(
         children: <Widget>[
-          BookshelfScene(),
+          ComicHomeScene(),
           HomeScene(),
           MeScene(),
         ],

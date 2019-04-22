@@ -33,7 +33,7 @@ class HomeBanner extends StatelessWidget {
           );
         }).toList(),
         aspectRatio: 2,
-        interval: const Duration(seconds: 5),
+        autoPlayInterval: const Duration(seconds: 5),
         autoPlay: true,
       ),
     );

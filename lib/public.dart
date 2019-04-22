@@ -26,6 +26,10 @@ export 'package:tianyue/app/user_manager.dart';
 export 'package:tianyue/app/app_scene.dart';
 
 // Model
+export 'package:tianyue/model/comic.dart';
+export 'package:tianyue/model/book_block.dart';
+export 'package:tianyue/model/recommend_every_day.dart';
+export 'package:tianyue/model/update_today.dart';
 export 'package:tianyue/model/novel.dart';
 export 'package:tianyue/model/chapter.dart';
 export 'package:tianyue/model/novel_comment.dart';
