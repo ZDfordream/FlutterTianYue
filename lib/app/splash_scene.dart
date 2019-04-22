@@ -30,7 +30,7 @@ class SplashSceneState extends State<SplashScene>
   goHomePage() {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (BuildContext context) => RootScene()),
-        (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
   }
 
   @override
@@ -41,21 +41,14 @@ class SplashSceneState extends State<SplashScene>
           children: <Widget>[
             Expanded(
               child: Container(
-                child: Text(
-                  '天 阅',
-                  style: TextStyle(
-                    fontSize: 34,
-                    color: TYColor.white,
-                    decoration: TextDecoration.none,
-                    fontFamily: '.SF UI Text',
-                  ),
-                ),
+                child: Image.asset('img/welcome_bg.png'),
                 alignment: Alignment.center,
-                color: TYColor.primary,
+                color: Color(0xFFFFFFFF),
               ),
             ),
           ],
         ),
+
         Container(
           child: Align(
             alignment: Alignment.topRight,

@@ -17,14 +17,14 @@ class RootSceneState extends State<RootScene> {
   int _tabIndex = 1;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
+    Image.asset('img/tab_home_n.png'),
     Image.asset('img/tab_bookshelf_n.png'),
-    Image.asset('img/tab_bookstore_n.png'),
-    Image.asset('img/tab_me_n.png'),
+    Image.asset('img/tab_mine_n.png'),
   ];
   List<Image> _tabSelectedImages = [
+    Image.asset('img/tab_home_p.png'),
     Image.asset('img/tab_bookshelf_p.png'),
-    Image.asset('img/tab_bookstore_p.png'),
-    Image.asset('img/tab_me_p.png'),
+    Image.asset('img/tab_mine_p.png'),
   ];
 
   @override
@@ -82,9 +82,9 @@ class RootSceneState extends State<RootScene> {
         backgroundColor: Colors.white,
         activeColor: TYColor.primary,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: getTabIcon(0), title: Text('书架')),
-          BottomNavigationBarItem(icon: getTabIcon(1), title: Text('书城')),
-          BottomNavigationBarItem(icon: getTabIcon(2), title: Text('我的')),
+          BottomNavigationBarItem(icon: getTabIcon(0)),
+          BottomNavigationBarItem(icon: getTabIcon(1)),
+          BottomNavigationBarItem(icon: getTabIcon(2)),
         ],
         currentIndex: _tabIndex,
         onTap: (index) {

@@ -52,6 +52,7 @@ class _DrawProgress extends CustomPainter {
   }
 }
 
+// ignore: must_be_immutable
 class SkipDownTimeProgress extends StatefulWidget {
   final Color color;
   final double radius;
@@ -66,13 +67,13 @@ class SkipDownTimeProgress extends StatefulWidget {
     this.duration,
     this.size, {
     Key key,
-    String this.skipText = "跳过",
-    OnSkipClickListener this.clickListener,
+    this.skipText = "跳过",
+    this.clickListener,
   }) : super(key: key);
 
   @override
   _SkipDownTimeProgressState createState() {
-    return new _SkipDownTimeProgressState();
+    return _SkipDownTimeProgressState();
   }
 }
 
