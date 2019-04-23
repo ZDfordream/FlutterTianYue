@@ -4,6 +4,7 @@ library public;
 
 // Global
 export 'package:tianyue/global.dart';
+export 'package:tianyue/constant.dart';
 
 // Utility
 export 'package:tianyue/utility/utility.dart';
@@ -27,7 +28,7 @@ export 'package:tianyue/app/app_scene.dart';
 
 // Model
 export 'package:tianyue/model/comic.dart';
-export 'package:tianyue/model/book_block.dart';
+export 'package:tianyue/model/comic_block.dart';
 export 'package:tianyue/model/recommend_every_day.dart';
 export 'package:tianyue/model/update_today.dart';
 export 'package:tianyue/model/novel.dart';

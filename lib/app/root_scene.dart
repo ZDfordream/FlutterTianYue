@@ -14,7 +14,7 @@ class RootScene extends StatefulWidget {
 }
 
 class RootSceneState extends State<RootScene> {
-  int _tabIndex = 1;
+  int _tabIndex = 0;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('img/tab_comic_home_n.png'),

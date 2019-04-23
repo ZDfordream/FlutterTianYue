@@ -21,6 +21,10 @@ class AppNavigator {
     AppNavigator.push(context, NovelDetailScene(novel.id));
   }
 
+  static pushComicDetail(BuildContext context, String url) {
+
+  }
+
   static pushLogin(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoginScene();

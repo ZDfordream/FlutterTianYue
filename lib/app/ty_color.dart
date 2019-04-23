@@ -12,4 +12,5 @@ class TYColor {
   static Color gray = Color(0xFF888888);
   static Color blue = Color(0xFF3688FF);
   static Color golden = Color(0xff8B7961);
+  static Color comicBg = Color.fromARGB(255, 245, 245, 238);
 }

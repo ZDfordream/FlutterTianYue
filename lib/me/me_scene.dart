@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tianyue/public.dart';
 
 import 'me_cell.dart';
@@ -8,6 +9,7 @@ import 'setting_scene.dart';
 class MeScene extends StatelessWidget {
 
   Widget buildCells(BuildContext context) {
+    Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
     return Container(
       child: Column(
         children: <Widget>[

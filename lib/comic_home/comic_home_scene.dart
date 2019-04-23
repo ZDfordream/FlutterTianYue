@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tianyue/comic_home/comic_banner.dart';
+import 'package:tianyue/comic_home/comic_block_view.dart';
+import 'package:tianyue/comic_home/comic_recommend_everyday_view.dart';
+import 'package:tianyue/comic_home/comic_update_today_view.dart';
 import 'package:tianyue/public.dart';
-
-import 'comic_banner.dart';
 
 class ComicHomeScene extends StatefulWidget {
   @override
@@ -16,7 +20,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   List<String> banner = [];
 
   /// 无良推荐
-  List<BookBlock> blockList = [];
+  List<ComicBlock> blockList = [];
 
   /// 每日一推
   RecommendEveryDay recommendEveryDay;
@@ -27,11 +31,13 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   ScrollController scrollController = ScrollController();
   double navAlpha = 0;
 
+  /// 是否请求数据完毕
+  bool isDataReady = false;
+
   @override
   void initState() {
     super.initState();
     fetchData();
-
     scrollController.addListener(() {
       var offset = scrollController.offset;
       if (offset < 0) {
@@ -64,34 +70,47 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   }
 
   @override
+  void didPush() {
+    super.didPush();
+    Timer(Duration(milliseconds: 1000), () {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
+    });
+  }
+
+  @override
   void dispose() {
     routeObserver.unsubscribe(this);
     super.dispose();
   }
 
+  updateStatusBar() {
+    if (navAlpha == 1) {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
+    } else {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.light);
+    }
+  }
+
   Future<void> fetchData() async {
     try {
       var responseJson = await Request.get(action: 'home_comic');
-      //comic = Comic.fromJson(responseJson);
+      banner.clear();
       responseJson["banner"].forEach((data) {
         banner.add(data);
       });
+      blockList.clear();
       responseJson["blockList"].forEach((data) {
-        blockList.add(BookBlock.fromJson(data));
+        blockList.add(ComicBlock.fromJson(data));
       });
+      updateTodayList.clear();
       responseJson["updateTodayList"].forEach((data) {
         updateTodayList.add(UpdateToday.fromJson(data));
       });
       recommendEveryDay =
           RecommendEveryDay.fromJson(responseJson["recommendEveryDay"]);
-      /*banner = comic.banner;
-      blockList = comic.blockList;
-      recommendEveryDay = comic.recommendEveryDay;
-      updateTodayList = comic.updateTodayList;
-      print(responseJson.toString());*/
-      /*  setState(() {
-        this.comic = responseJson;
-      });*/
+      setState(() {
+        isDataReady = true;
+      });
     } catch (e) {
       print(e.toString());
       Toast.show(e.toString());
@@ -127,7 +146,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
         Opacity(
           opacity: navAlpha,
           child: Container(
-            padding: EdgeInsets.fromLTRB(5, Screen.topSafeHeight, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, Screen.topSafeHeight, 0, 0),
             height: Screen.navigationBarHeight,
             color: TYColor.white,
             child: Row(
@@ -153,7 +172,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   }
 
   Widget buildModule(BuildContext context, int index) {
-    if (banner == null) {
+    if (blockList == null || blockList.length == 0) {
       return new Container();
     }
     Widget widget;
@@ -162,13 +181,13 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
         widget = ComicBanner(banner);
         break;
       case 1:
-        widget = ComicBanner(banner);
+        widget = ComicBlockView(blockList);
         break;
       case 2:
-        widget = ComicBanner(banner);
+        widget = ComicRecommendEveryDayView(recommendEveryDay);
         break;
       case 3:
-        widget = ComicBanner(banner);
+        widget = ComicUpdateTodayView(updateTodayList);
         break;
     }
     return widget;
@@ -177,11 +196,11 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: TYColor.white,
+      backgroundColor: TYColor.comicBg,
       body: Stack(children: [
         RefreshIndicator(
           onRefresh: fetchData,
-          color:TYColor.primary,
+          color: TYColor.primary,
           child: ListView.builder(
             padding: EdgeInsets.only(top: 0),
             controller: scrollController,

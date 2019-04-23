@@ -1,4 +1,4 @@
-import 'book_block.dart';
+import 'comic_block.dart';
 import 'recommend_every_day.dart';
 import 'update_today.dart';
 
@@ -7,7 +7,7 @@ class Comic{
   List<String> banner;
 
   /// 无良推荐
-  List<BookBlock> blockList;
+  List<ComicBlock> blockList;
 
   /// 每日一推
   RecommendEveryDay recommendEveryDay;
