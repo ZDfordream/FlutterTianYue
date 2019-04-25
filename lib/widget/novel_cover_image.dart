@@ -17,7 +17,7 @@ class NovelCoverImage extends StatelessWidget {
         fit: BoxFit.cover,
         width: width,
         height: height,
-        placeholder: Image.asset('img/bookshelf_bg.png'),
+        placeholder: Image.asset('img/pic_default.png'),
       ),
       decoration: BoxDecoration(border: Border.all(color: TYColor.paper)),
     );

@@ -6,6 +6,7 @@ import 'package:tianyue/novel_detail/novel_detail_scene.dart';
 import 'package:tianyue/me/login_scene.dart';
 import 'package:tianyue/me/web_scene.dart';
 import 'package:tianyue/reader/reader_scene.dart';
+import 'package:tianyue/comic_detail/comic_detail_scene.dart';
 
 class AppNavigator {
   static push(BuildContext context, Widget scene) {
@@ -22,7 +23,7 @@ class AppNavigator {
   }
 
   static pushComicDetail(BuildContext context, String url) {
-
+    AppNavigator.push(context, ComicDetailScene(""));
   }
 
   static pushLogin(BuildContext context) {

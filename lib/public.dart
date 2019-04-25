@@ -35,3 +35,8 @@ export 'package:tianyue/model/novel.dart';
 export 'package:tianyue/model/chapter.dart';
 export 'package:tianyue/model/novel_comment.dart';
 export 'package:tianyue/model/article.dart';
+export 'package:tianyue/model/comic_chapter.dart';
+export 'package:tianyue/model/comic_comment.dart';
+export 'package:tianyue/model/comic_detail.dart';
+export 'package:tianyue/model/comic_overview.dart';
+export 'package:tianyue/model/comment_list_holder.dart';

@@ -19,6 +19,7 @@ class ComicBannerState extends State<ComicBanner> {
     if (this.widget.imgList.length == 0) {
       return SizedBox();
     }
+    var width = Screen.width;
     return GestureDetector(
         onTap: () {
           AppNavigator.pushComicDetail(context, "");
@@ -35,11 +36,9 @@ class ComicBannerState extends State<ComicBanner> {
                 items: map<Widget>(
                   this.widget.imgList,
                   (index, i) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(i), fit: BoxFit.cover),
-                      ),
+                    return NovelCoverImage(
+                      i,
+                      width: width,
                     );
                   },
                 ),
