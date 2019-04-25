@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tianyue/comic_detail/comic_detail_overview_view.dart';
-import 'package:tianyue/comic_detail/comic_detail_tab_view.dart';
+import 'package:tianyue/comic_detail/comic_detail_tab_container.dart';
 import 'package:tianyue/public.dart';
 
 class ComicDetailScene extends StatefulWidget {
@@ -60,7 +60,6 @@ class ComicDetailState extends State<ComicDetailScene> with RouteAware{
       });
     } catch (e) {
       print(e.toString());
-      Toast.show(e.toString());
     }
   }
 
@@ -72,7 +71,7 @@ class ComicDetailState extends State<ComicDetailScene> with RouteAware{
         widget = ComicDetailOverViewView(comicOverview);
         break;
       case 1:
-        widget = ComicDetailTabScene();
+        widget = ComicDetailTabContainer();
         break;
     }
     return widget;

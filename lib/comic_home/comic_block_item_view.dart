@@ -3,8 +3,9 @@ import 'package:tianyue/public.dart';
 
 class ComicBlockItemView extends StatelessWidget {
   final ComicBlock comicItem;
+  final Color bgColor;
 
-  ComicBlockItemView(this.comicItem);
+  ComicBlockItemView(this.comicItem, this.bgColor);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ComicBlockItemView extends StatelessWidget {
         AppNavigator.pushComicDetail(context, "");
       },
       child: Container(
-        color: TYColor.white,
+        color: bgColor,
         width: width,
         child: Column(
           children: <Widget>[
@@ -23,13 +24,19 @@ class ComicBlockItemView extends StatelessWidget {
             Text(
               comicItem.title,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.none),
               maxLines: 1,
             ),
             Text(
               comicItem.description,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 12, color: TYColor.gray),
+              style: TextStyle(
+                  fontSize: 12,
+                  color: TYColor.gray,
+                  decoration: TextDecoration.none),
               maxLines: 1,
             ),
             SizedBox(height: 4),

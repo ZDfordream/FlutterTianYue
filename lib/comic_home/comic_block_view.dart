@@ -13,8 +13,9 @@ class ComicBlockView extends StatelessWidget {
     if (blockList == null || blockList.length == 0) {
       return Container();
     }
-    var children =
-        blockList.map((comicItem) => ComicBlockItemView(comicItem)).toList();
+    var children = blockList
+        .map((comicItem) => ComicBlockItemView(comicItem, TYColor.white))
+        .toList();
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

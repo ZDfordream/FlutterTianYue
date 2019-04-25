@@ -2,77 +2,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tianyue/public.dart';
 
-class ComicDetailTabScene extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => ComicDetailTabState();
-}
+class ComicDetailTabView extends StatelessWidget {
+  final String text;
+  final int index;
+  final int currentItem;
+  final OnTabClickListener clickListener;
 
-class ComicDetailTabState extends State<ComicDetailTabScene> {
-  PageController _controller;
-  int _currentItem = 0;
-  static List<Container> pages = [
-    Container(
-      width: double.maxFinite,
-      height: 100,
-      child: Text("qq"),
-    ),
-    Container(
-      width: double.maxFinite,
-      height: 100,
-      child: Text("qq"),
-    ),
-    Container(
-      width: double.maxFinite,
-      height: 100,
-      child: Text("qq"),
-    )
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = PageController();
-    setState(() {});
-  }
+  ComicDetailTabView(
+      this.text, this.index, this.currentItem, this.clickListener);
 
   @override
   Widget build(BuildContext context) {
     var width = Screen.width;
-    return DefaultTabController(
-        length: 3,
-        child: Column(children: <Widget>[
-          Container(
-            child: AppBar(
-              brightness: Brightness.light,
-              title: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TabBar(
-                  labelColor: TYColor.darkGray,
-                  labelStyle:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  unselectedLabelColor: TYColor.gray,
-                  indicatorColor: TYColor.secondary,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorWeight: 3,
-                  indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                  tabs: [
-                    Tab(text: '精选'),
-                    Tab(text: '女生'),
-                    Tab(text: '男生'),
-                  ],
-                ),
-              ),
-              backgroundColor: TYColor.white,
-              elevation: 0,
-            ),
-            width: 200,
-            height: 100,
-          ),
-          Container(
-            child: TabBarView(children: pages),
-            width: width,
-            height: 900,
-          ),
-        ]));
+    return GestureDetector(
+      onTap: () => this.clickListener.onTabClick(this.index),
+      child: Container(
+        height: 43,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(this.text,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: this.currentItem == this.index
+                        ? TYColor.darkGray
+                        : TYColor.gray,
+                    decoration: TextDecoration.none)),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal:40),
+                width: 10,
+                height: 3,
+                color: this.currentItem == this.index
+                    ? TYColor.primary
+                    : TYColor.white)
+          ],
+        ),
+        alignment: Alignment.center,
+      ),
+    );
   }
+}
+
+abstract class OnTabClickListener {
+  onTabClick(int index);
 }

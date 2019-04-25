@@ -13,6 +13,7 @@ export 'package:tianyue/utility/event_bus.dart';
 export 'package:tianyue/utility/toast.dart';
 export 'package:tianyue/utility/styles.dart';
 export 'package:tianyue/utility/flutter_bridge.dart';
+export 'package:tianyue/utility/collectionsUtil.dart';
 
 // Widget
 export 'package:tianyue/widget/novel_cover_image.dart';
