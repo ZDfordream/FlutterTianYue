@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:tianyue/comic_home/comic_block_header_view.dart';
 import 'package:tianyue/public.dart';
 
 class ComicDetailOverViewView extends StatelessWidget {

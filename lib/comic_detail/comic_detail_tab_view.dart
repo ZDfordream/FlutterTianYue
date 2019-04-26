@@ -13,7 +13,6 @@ class ComicDetailTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = Screen.width;
     return GestureDetector(
       onTap: () => this.clickListener.onTabClick(this.index),
       child: Container(

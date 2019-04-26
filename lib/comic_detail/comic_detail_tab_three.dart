@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tianyue/comic_home/comic_block_item_view.dart';
 import 'package:tianyue/public.dart';
 
 class ComicCommentTabThree extends StatelessWidget {
