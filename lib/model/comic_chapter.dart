@@ -2,15 +2,20 @@ import 'package:tianyue/model/comic_block.dart';
 
 class ComicChapter {
   String updateTime;
-  List<String> categoryList;
+  List<String> categoryList = [];
   String actionName;
   //骚年们都在看
-  List<ComicBlock> recommendList;
+  List<ComicBlock> recommendList = [];
 
   ComicChapter.fromJson(Map data) {
     updateTime = data['updateTime'];
-    categoryList = data['categoryList'];
+    data["categoryList"].forEach((chapterName) {
+      categoryList.add(chapterName);
+    });
     actionName = data['actionName'];
-    recommendList = data['recommendList'];
+    data["recommendList"].forEach((item) {
+      ComicBlock comicBlock = ComicBlock.fromJson(item);
+      recommendList.add(comicBlock);
+    });
   }
 }

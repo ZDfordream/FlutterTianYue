@@ -12,8 +12,7 @@ class _DrawProgress extends CustomPainter {
   Paint progressPaint;
   Rect rect;
 
-  _DrawProgress(this.color, this.radius,
-      {this.angle, this.animation}) {
+  _DrawProgress(this.color, this.radius, {this.angle, this.animation}) {
     circleFillPaint = new Paint();
     circleFillPaint.color = Colors.white;
     circleFillPaint.style = PaintingStyle.fill;
@@ -114,9 +113,9 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
 
   void _doAnimation() async {
     Future.delayed(new Duration(milliseconds: 50), () {
-      if(mounted) {
+      if (mounted) {
         animationController.forward().orCancel;
-      }else {
+      } else {
         _doAnimation();
       }
     });
@@ -126,9 +125,12 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
     print('ange == $animationController.value');
     double ange =
         double.parse(((animationController.value * 360) ~/ 1).toString());
-    setState(() {
-      curAngle = (360.0 - ange);
-    });
+
+    if (this.mounted) {
+      setState(() {
+        curAngle = (360.0 - ange);
+      });
+    }
   }
 
   @override

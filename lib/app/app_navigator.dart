@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tianyue/comic_detail/comic_reader_scene.dart';
 
 import 'package:tianyue/public.dart';
 
@@ -24,6 +25,10 @@ class AppNavigator {
 
   static pushComicDetail(BuildContext context, String url) {
     AppNavigator.push(context, ComicDetailScene(""));
+  }
+
+  static pushComicReader(BuildContext context, String url) {
+    AppNavigator.push(context, ComicReaderScene(""));
   }
 
   static pushLogin(BuildContext context) {

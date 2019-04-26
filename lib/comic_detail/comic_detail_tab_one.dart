@@ -10,7 +10,6 @@ class ComicDetailTabOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = Screen.width;
     if (comicDetail == null ||
         CollectionsUtils.isEmpty(comicDetail.recommendList)) {
       return Container();
@@ -38,7 +37,7 @@ class ComicDetailTabOne extends StatelessWidget {
           padding: EdgeInsets.only(left: 10),
         ),
         Container(
-          padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
+          padding: EdgeInsets.fromLTRB(15, 15, 0, 15),
           child: Wrap(spacing: 15, runSpacing: 15, children: children),
         ),
       ],

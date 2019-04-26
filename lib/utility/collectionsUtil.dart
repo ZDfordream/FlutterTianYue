@@ -7,7 +7,7 @@ class CollectionsUtils {
     }
   }
 
-  static int length(List list) {
+  static int size(List list) {
     return isEmpty(list) ? 0 : list.length;
   }
 }

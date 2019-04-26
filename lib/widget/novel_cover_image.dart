@@ -6,18 +6,18 @@ class NovelCoverImage extends StatelessWidget {
   final String imgUrl;
   final double width;
   final double height;
+  final BoxFit fit;
 
-  NovelCoverImage(this.imgUrl, {this.width, this.height});
+  NovelCoverImage(this.imgUrl, {this.width, this.height, this.fit});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: CachedNetworkImage(
         imageUrl: imgUrl,
-        fit: BoxFit.cover,
+        fit: fit == null ? BoxFit.cover : fit,
         width: width,
         height: height,
-        placeholder: Image.asset('img/pic_default.png'),
       ),
       decoration: BoxDecoration(border: Border.all(color: TYColor.paper)),
     );

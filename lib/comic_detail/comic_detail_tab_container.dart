@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tianyue/comic_detail/comic_detail_tab_one.dart';
+import 'package:tianyue/comic_detail/comic_detail_tab_three.dart';
+import 'package:tianyue/comic_detail/comic_detail_tab_two.dart';
 import 'package:tianyue/comic_detail/comic_detail_tab_view.dart';
 import 'package:tianyue/public.dart';
 
@@ -11,9 +13,20 @@ class ComicDetailTabContainer extends StatefulWidget {
 
 class ComicDetailTabState extends State<ComicDetailTabContainer>
     implements OnTabClickListener {
-  int _currentItem = 0;
+  int _currentItem = 1;
 
   ComicDetail comicDetail;
+  ComicChapter comicChapter;
+  List<ComicComment> commentList = [];
+
+  /// 详情数据是否准备完毕
+  bool _comicDetailReady = false;
+
+  /// 章节数据是否准备完毕
+  bool _comicChapterReady = false;
+
+  /// 评论数据是否准备完毕
+  bool _comicCommentReady = false;
 
   @override
   void initState() {
@@ -28,6 +41,7 @@ class ComicDetailTabState extends State<ComicDetailTabContainer>
       var responseJson = await Request.get(action: 'home_comic_detail');
       comicDetail = ComicDetail.fromJson(responseJson);
       setState(() {
+        _comicDetailReady = true;
       });
     } catch (e) {
       print(e.toString());
@@ -37,6 +51,10 @@ class ComicDetailTabState extends State<ComicDetailTabContainer>
   Future<void> fetchChapterData() async {
     try {
       var responseJson = await Request.get(action: 'home_comic_chapter');
+      comicChapter = ComicChapter.fromJson(responseJson);
+      setState(() {
+        _comicChapterReady = true;
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -45,6 +63,12 @@ class ComicDetailTabState extends State<ComicDetailTabContainer>
   Future<void> fetchCommentData() async {
     try {
       var responseJson = await Request.get(action: 'home_comic_comment');
+      responseJson["commentList"].forEach((data) {
+        commentList.add(ComicComment.fromJson(data));
+      });
+      setState(() {
+        _comicCommentReady = true;
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -64,10 +88,10 @@ class ComicDetailTabState extends State<ComicDetailTabContainer>
         widget = ComicDetailTabOne(comicDetail);
         break;
       case 1:
-        widget = ComicDetailTabOne(comicDetail);
+        widget = ComicChapterTabTwo(comicChapter);
         break;
       case 2:
-        widget = ComicDetailTabOne(comicDetail);
+        widget = ComicCommentTabThree(commentList);
         break;
     }
     return widget;
@@ -76,7 +100,7 @@ class ComicDetailTabState extends State<ComicDetailTabContainer>
   @override
   Widget build(BuildContext context) {
     var width = Screen.width;
-    if (comicDetail == null) {
+    if (!_comicDetailReady || !_comicChapterReady || !_comicCommentReady) {
       return Container();
     }
     return Column(children: <Widget>[
