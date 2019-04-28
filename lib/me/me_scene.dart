@@ -40,11 +40,6 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '阅读之约',
-            iconName: 'img/me_date.png',
-            onPressed: () {},
-          ),
-          MeCell(
             title: '公益行动',
             iconName: 'img/me_action.png',
             onPressed: () {},
@@ -63,6 +58,15 @@ class MeScene extends StatelessWidget {
             title: '个性换肤',
             iconName: 'img/me_theme.png',
             onPressed: () {},
+          ),
+          MeCell(
+            title: '地图',
+            iconName: 'img/me_date.png',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SettingScene();
+              }));
+            },
           ),
           MeCell(
             title: '关于',
@@ -88,11 +92,11 @@ class MeScene extends StatelessWidget {
             },
           ),
           MeCell(
-            title: 'Github',
+            title: '网页',
             iconName: 'img/me_feedback.png',
             onPressed: () {
               AppNavigator.pushWeb(
-                  context, 'https://github.com/ZDfordream/TianYueFlutter', 'Github');
+                  context, 'https://www.baidu.com', '百度');
             },
           ),
         ],
