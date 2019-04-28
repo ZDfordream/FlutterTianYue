@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tianyue/me/map_scene.dart';
 import 'package:tianyue/public.dart';
 
 import 'me_cell.dart';
@@ -64,7 +65,7 @@ class MeScene extends StatelessWidget {
             iconName: 'img/me_date.png',
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SettingScene();
+                return MapScene();
               }));
             },
           ),
