@@ -72,7 +72,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   @override
   void didPush() {
     super.didPush();
-    Timer(Duration(milliseconds: 1000), () {
+    var timer = Timer(Duration(milliseconds: 1000), () {
       Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
     });
   }

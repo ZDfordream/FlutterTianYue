@@ -11,11 +11,12 @@ class ComicBanner extends StatefulWidget {
   ComicBannerState createState() => ComicBannerState();
 }
 
-class ComicBannerState extends State<ComicBanner> {
+class ComicBannerState extends State<ComicBanner> with AutomaticKeepAliveClientMixin{
   int _current = 0;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (this.widget.imgList.length == 0) {
       return SizedBox();
     }
@@ -32,13 +33,16 @@ class ComicBannerState extends State<ComicBanner> {
                 viewportFraction: 1.0,
                 aspectRatio: 2.0,
                 autoPlay: true,
+                pauseAutoPlayOnTouch:Duration(milliseconds: 400),
                 enlargeCenterPage: false,
                 items: map<Widget>(
                   this.widget.imgList,
-                  (index, i) {
-                    return NovelCoverImage(
-                      i,
+                  (index, url) {
+                    return Image.network(
+                      url,
                       width: width,
+                      height: width*0.58,
+                      fit: BoxFit.cover,
                     );
                   },
                 ),
@@ -91,4 +95,8 @@ class ComicBannerState extends State<ComicBanner> {
     }
     return result;
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
