@@ -58,8 +58,9 @@ class ComicChapterTabTwo extends StatelessWidget {
                     crossAxisCount: 3,
                     childAspectRatio: 2.4),
                 children: chapterChildren,
+                // 防止在row，column中不显示
                 shrinkWrap: true,
-                /// 处理滑动冲突
+                // 处理滑动冲突
                 physics: NeverScrollableScrollPhysics()),
             GestureDetector(
               onTap: () => Toast.show("客官，直接点章节观看～"),

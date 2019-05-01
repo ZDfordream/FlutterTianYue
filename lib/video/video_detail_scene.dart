@@ -1,6 +1,7 @@
 import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/video/video_widget2.dart';
 
 class VideoDetailScene extends StatefulWidget {
   @override
@@ -8,102 +9,41 @@ class VideoDetailScene extends StatefulWidget {
 }
 
 class VideoDetailState extends State<VideoDetailScene> {
-  List<String> _guideList = [
-    'img/guide1.png',
-    'img/guide2.png',
-    'img/guide3.png',
-    'img/guide4.png',
-  ];
-  List<String> _guideInfoList = [
-    "动漫陪你每一个夜晚",
-    "同你去往每个地方",
-    "懂你，更懂你所爱",
-    "因为在意，所以用心",
-  ];
-
-  List<Widget> _bannerList = [];
+  SwiperController _controller = SwiperController();
 
   @override
   void initState() {
     super.initState();
-    _initBannerData();
-  }
-
-  void _initBannerData() {
-    for (int i = 0, length = _guideList.length; i < length; i++) {
-      if (i == length - 1) {
-        _bannerList.add(Stack(
-          children: <Widget>[
-            Image.asset(
-              _guideList[i],
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-            Center(
-              child: new Text(
-                _guideInfoList[i],
-                style: new TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: new Container(
-                margin: EdgeInsets.only(bottom: 50.0),
-                child: new InkWell(
-                  onTap: () {
-                    _goMain();
-                  },
-                  child: new Container(
-                    width: 185,
-                    alignment: Alignment.center,
-                    height: 48,
-                    child: new Text(
-                      '立即启程',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                    decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        color: Color(0X19FFFFFF),
-                        border:
-                            new Border.all(width: 1, color: Colors.white70)),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ));
-      } else {
-        _bannerList.add(new Stack(
-          children: <Widget>[
-            new Image.asset(
-              _guideList[i],
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-            new Center(
-              child: new Text(
-                _guideInfoList[i],
-                style: new TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            )
-          ],
-        ));
+    _controller.addListener(() {
+      if (_controller.page.round() == _controller.page) {
+        eventBus.emit(EventVideoPlayPosition, _controller.page.round());
       }
-    }
+      print(
+          _controller.page.toString() + "----" + _controller.offset.toString());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> children = List.generate(20, (i) => buildVideoItem(i));
     return Scaffold(
         body: Swiper(
-            autoStart: false,
-            circular: false,
-            direction: Axis.vertical,
-            children: _bannerList));
+      autoStart: false,
+      circular: false,
+      direction: Axis.vertical,
+      children: children,
+      controller: _controller,
+    ));
   }
 
-  void _goMain() {}
+  Widget buildVideoItem(int position) {
+    print(position.toString());
+    if (position % 2 == 0) {
+      return VideoWidget("img/video_1.mp4",
+          previewImgUrl: 'img/img_video_1.png', positionTag: position);
+    } else {
+      return VideoWidget("img/video_2.mp4",
+          previewImgUrl: 'img/img_video_2.png', positionTag: position);
+    }
+  }
 }
