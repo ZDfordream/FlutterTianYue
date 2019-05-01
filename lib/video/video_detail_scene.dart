@@ -1,7 +1,7 @@
 import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
 import 'package:tianyue/public.dart';
-import 'package:tianyue/video/video_widget2.dart';
+import 'package:tianyue/video/video_widget.dart';
 
 class VideoDetailScene extends StatefulWidget {
   @override
@@ -15,11 +15,14 @@ class VideoDetailState extends State<VideoDetailScene> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      if (_controller.page.round() == _controller.page) {
-        eventBus.emit(EventVideoPlayPosition, _controller.page.round());
+      if (_controller.page.floor() == _controller.page) {
+        eventBus.emit(
+            EventVideoPlayPosition + _controller.page.floor().toString(),
+            _controller.page.floor());
       }
-      print(
-          _controller.page.toString() + "----" + _controller.offset.toString());
+      print(_controller.page.toString() +
+          "----" +
+          _controller.page.floor().toString());
     });
   }
 
