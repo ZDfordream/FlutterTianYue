@@ -11,7 +11,8 @@ class ComicCommentTabThree extends StatefulWidget {
   ComicCommentTabThreeState createState() => ComicCommentTabThreeState();
 }
 
-class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
+class ComicCommentTabThreeState extends State<ComicCommentTabThree>
+    with AutomaticKeepAliveClientMixin {
   List<ComicComment> commentList = [];
   ScrollController scrollController2 = ScrollController();
   int _pageCount = 1;
@@ -39,7 +40,8 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
       comicComment.content = comicComment.content + _pageCount.toString();
       commentList.add(comicComment);
     });
-    setState(() {});
+    eventBus.emit(EventDetailLoadMore);
+    //setState(() {});
   }
 
   Future<void> _fetchCommentData() async {
@@ -105,6 +107,7 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (CollectionsUtils.isEmpty(commentList)) {
       return Container();
     }
@@ -116,18 +119,14 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
       itemCount: CollectionsUtils.size(commentList) + 1,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
-        if(index<CollectionsUtils.size(commentList)){
+        if (index < CollectionsUtils.size(commentList)) {
           return buildChapterWidget(commentList[index]);
-        }else{
+        } else {
           return buildLoadProgress();
         }
       },
       cacheExtent: 5,
     ));
-    /*return SingleChildScrollView(
-      child: Column(children: commentChildren),
-      physics: NeverScrollableScrollPhysics(),
-    );*/
   }
 
   Widget buildLoadProgress() {
@@ -140,4 +139,8 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
       alignment: Alignment.center,
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

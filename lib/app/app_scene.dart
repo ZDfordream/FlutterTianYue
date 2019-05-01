@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tianyue/app/splash_scene.dart';
+import 'package:tianyue/app/guide_scene.dart';
 import 'package:tianyue/public.dart';
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -17,7 +17,7 @@ class AppScene extends StatelessWidget {
         scaffoldBackgroundColor: TYColor.paper,
         textTheme: TextTheme(body1: TextStyle(color: TYColor.darkGray)),
       ),
-      home: SplashScene(),
+      home: GuideScene(),
     );
   }
 }

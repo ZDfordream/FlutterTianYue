@@ -7,6 +7,7 @@ import 'package:tianyue/public.dart';
 import 'package:tianyue/book_home/home_scene.dart';
 import 'package:tianyue/comic_home/comic_home_scene.dart';
 import 'package:tianyue/me/me_scene.dart';
+import 'package:tianyue/video/video_scene.dart';
 
 class RootScene extends StatefulWidget {
   @override
@@ -19,10 +20,12 @@ class RootSceneState extends State<RootScene> {
   List<Image> _tabImages = [
     Image.asset('img/tab_comic_home_n.png'),
     Image.asset('img/tab_book_home_n.png'),
+    Image.asset('img/tab_book_home_n.png'),
     Image.asset('img/tab_mine_n.png'),
   ];
   List<Image> _tabSelectedImages = [
     Image.asset('img/tab_home_comic_p.png'),
+    Image.asset('img/tab_book_home_p.png'),
     Image.asset('img/tab_book_home_p.png'),
     Image.asset('img/tab_mine_p.png'),
   ];
@@ -73,6 +76,7 @@ class RootSceneState extends State<RootScene> {
       body: IndexedStack(
         children: <Widget>[
           ComicHomeScene(),
+          VideoScene(),
           HomeScene(),
           MeScene(),
         ],
@@ -85,6 +89,7 @@ class RootSceneState extends State<RootScene> {
           BottomNavigationBarItem(icon: getTabIcon(0)),
           BottomNavigationBarItem(icon: getTabIcon(1)),
           BottomNavigationBarItem(icon: getTabIcon(2)),
+          BottomNavigationBarItem(icon: getTabIcon(3)),
         ],
         currentIndex: _tabIndex,
         onTap: (index) {

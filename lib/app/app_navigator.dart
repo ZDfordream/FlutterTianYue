@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tianyue/comic_detail/comic_detail_scene2.dart';
+import 'package:tianyue/comic_detail/comic_detail_scene.dart';
 import 'package:tianyue/comic_detail/comic_reader_scene.dart';
 
 import 'package:tianyue/public.dart';
@@ -9,6 +9,7 @@ import 'package:tianyue/me/login_scene.dart';
 import 'package:tianyue/me/web_scene.dart';
 import 'package:tianyue/reader/reader_scene.dart';
 import 'package:tianyue/comic_detail/comic_detail_scene.dart';
+import 'package:tianyue/video/video_detail_scene.dart';
 
 class AppNavigator {
   static push(BuildContext context, Widget scene) {
@@ -25,11 +26,15 @@ class AppNavigator {
   }
 
   static pushComicDetail(BuildContext context, String url) {
-    AppNavigator.push(context, ComicDetailScene2(""));
+    AppNavigator.push(context, ComicDetailScene(""));
   }
 
   static pushComicReader(BuildContext context, String url) {
     AppNavigator.push(context, ComicReaderScene(""));
+  }
+
+  static pushVideoDetail(BuildContext context, String url) {
+    AppNavigator.push(context, VideoDetailScene());
   }
 
   static pushLogin(BuildContext context) {

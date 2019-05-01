@@ -67,6 +67,7 @@ class ComicReaderState extends State<ComicReaderScene> with RouteAware {
         child: new Stack(
           children: <Widget>[
             ListView.builder(
+              physics: BouncingScrollPhysics(),
               padding: EdgeInsets.only(top: 0),
               controller: scrollController,
               itemCount: CollectionsUtils.size(imageList),

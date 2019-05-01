@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:tianyue/public.dart';
 
-import 'home_model.dart';
 import 'home_banner.dart';
-import 'home_menu.dart';
-import 'novel_normal_card.dart';
-import 'novel_four_grid_view.dart';
+import 'home_model.dart';
 import 'novel_first_hybird_card.dart';
+import 'novel_four_grid_view.dart';
+import 'novel_normal_card.dart';
 import 'novel_second_hybird_card.dart';
 
 enum HomeListType {
@@ -33,6 +31,13 @@ class HomeListViewState extends State<HomeListView>
   List<CarouselInfo> carouselInfos = [];
   int pageIndex = 1;
   List<HomeModule> modules = [];
+  List<String> urls = [
+    "https://manhua.qpic.cn/operation/0/19_23_51_3fa71e4fd07f0f370af0465faa6ccdb5_1555689063579.jpg/0",
+    "https://manhua.qpic.cn/operation/0/19_23_51_898a3baa00cba550d9fe64a372bee24a_1555689101098.jpg/0",
+    "https://manhua.qpic.cn/operation/0/19_23_52_6234abed1062e3601cd639fd376760a3_1555689133306.jpg/0",
+    "https://manhua.qpic.cn/operation/0/19_23_52_c0343c40a42861d776eb2b265015bef2_1555689169278.jpg/0",
+    "https://manhua.qpic.cn/operation/0/19_23_53_8968d75fb1619aa30adfaf271a271642_1555689199834.jpg/0"
+  ];
 
   @override
   void initState() {
@@ -99,9 +104,7 @@ class HomeListViewState extends State<HomeListView>
 
   Widget buildModule(BuildContext context, HomeModule module) {
     if (module.carousels != null) {
-      return HomeBanner(module.carousels);
-    } else if (module.menus != null) {
-      return HomeMenu(module.menus);
+      return HomeBanner(urls);
     } else if (module.books != null) {
       return bookCardWithInfo(module);
     }
@@ -114,6 +117,7 @@ class HomeListViewState extends State<HomeListView>
     return Container(
       child: RefreshIndicator(
         onRefresh: fetchData,
+        color: TYColor.primary,
         child: ListView.builder(
           itemCount: modules.length,
           itemBuilder: (BuildContext context, int index) {

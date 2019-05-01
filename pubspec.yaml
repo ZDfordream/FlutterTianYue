@@ -29,6 +29,7 @@ dependencies:
   battery: ^0.2.3
   intl: ^0.15.7
   device_info: ^0.4.0
+  flukit: ^1.0.0
 
 dev_dependencies:
   flutter_test:

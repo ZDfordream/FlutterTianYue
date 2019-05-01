@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tianyue/me/ScrollDemoScene.dart';
 import 'package:tianyue/me/map_scene.dart';
 import 'package:tianyue/public.dart';
 
@@ -51,14 +52,18 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '打赏记录',
-            iconName: 'img/me_record.png',
-            onPressed: () {},
-          ),
-          MeCell(
             title: '个性换肤',
             iconName: 'img/me_theme.png',
             onPressed: () {},
+          ),
+          MeCell(
+            title: '加载更多示例',
+            iconName: 'img/me_record.png',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ScrollDemoScene();
+              }));
+            },
           ),
           MeCell(
             title: '地图',
@@ -115,6 +120,7 @@ class MeScene extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: <Widget>[
             MeHeader(),
             SizedBox(height: 10),

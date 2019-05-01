@@ -9,7 +9,22 @@ class HomeScene extends StatefulWidget {
   State<StatefulWidget> createState() => HomeSceneState();
 }
 
-class HomeSceneState extends State<HomeScene> {
+class HomeSceneState extends State<HomeScene>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, initialIndex: 1, length: 3);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,32 +33,39 @@ class HomeSceneState extends State<HomeScene> {
         appBar: AppBar(
           brightness: Brightness.light,
           title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: TabBar(
-              labelColor: TYColor.darkGray,
-              labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              unselectedLabelColor: TYColor.gray,
-              indicatorColor: TYColor.secondary,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicatorWeight: 3,
-              indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-              tabs: [
-                Tab(text: '精选'),
-                Tab(text: '女生'),
-                Tab(text: '男生'),
-                Tab(text: '漫画'),
-              ],
-            ),
-          ),
+              height: 40,
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TabBar(
+                  tabs: [
+                    Tab(text: '女生'),
+                    Tab(text: '漫画'),
+                    Tab(text: '男生'),
+                  ],
+                  controller: _tabController,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 25),
+                  isScrollable: true,
+                  indicatorColor: TYColor.primary,
+                  labelColor: TYColor.primary,
+                  labelStyle: TextStyle(
+                      fontSize: 22,
+                      color: TYColor.primary,
+                      fontWeight: FontWeight.w500),
+                  unselectedLabelColor: Colors.black,
+                  unselectedLabelStyle:
+                      TextStyle(fontSize: 16, color: Colors.black),
+                  indicatorSize: TabBarIndicatorSize.label)),
           backgroundColor: TYColor.white,
           elevation: 0,
         ),
-        body: TabBarView(children: [
-          HomeListView(HomeListType.excellent),
-          HomeListView(HomeListType.female),
-          HomeListView(HomeListType.male),
-          HomeListView(HomeListType.cartoon),
-        ]),
+        body: TabBarView(
+          children: [
+            HomeListView(HomeListType.female),
+            HomeListView(HomeListType.cartoon),
+            HomeListView(HomeListType.male),
+          ],
+          controller: _tabController,
+        ),
       ),
     );
   }

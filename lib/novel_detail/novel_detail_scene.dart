@@ -20,7 +20,7 @@ class NovelDetailScene extends StatefulWidget {
   NovelDetailSceneState createState() => NovelDetailSceneState();
 }
 
-class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
+class NovelDetailSceneState extends State<NovelDetailScene>{
   Novel novel;
   List<Novel> recommendNovels = [];
   List<NovelComment> comments = [];
@@ -35,6 +35,9 @@ class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
   @override
   void initState() {
     super.initState();
+    Timer(Duration(milliseconds: 500), () {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
+    });
     fetchData();
 
     scrollController.addListener(() {
@@ -58,38 +61,7 @@ class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
-  }
-
-  @override
-  void didPush() {
-    // 间隔500毫秒后，再设置状态栏样式。否则设置无效（会被build覆盖？）。
-    Timer(Duration(milliseconds: 500), () {
-      updateStatusBar();
-    });
-  }
-
-  @override
-  void didPopNext() {
-    isVisible = true;
-    updateStatusBar();
-  }
-
-  @override
-  void didPop() {
-    isVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    isVisible = false;
-  }
-
-  @override
   void dispose() {
-    routeObserver.unsubscribe(this);
     scrollController.dispose();
     super.dispose();
   }
@@ -138,12 +110,6 @@ class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
   Widget buildNavigationBar() {
     return Stack(
       children: <Widget>[
-        Container(
-          width: 44,
-          margin: EdgeInsets.fromLTRB(5, Screen.topSafeHeight, 0, 0),
-          child: GestureDetector(
-              onTap: back, child: Image.asset('img/pub_back_white.png')),
-        ),
         Opacity(
           opacity: navAlpha,
           child: Container(
@@ -240,19 +206,8 @@ class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
     );
   }
 
-  updateStatusBar() {
-    if (navAlpha == 1) {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-    } else {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.light);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (isVisible) {
-      updateStatusBar();
-    }
 
     if (this.novel == null) {
       return Scaffold(appBar: AppBar(elevation: 0));
@@ -268,6 +223,7 @@ class NovelDetailSceneState extends State<NovelDetailScene> with RouteAware {
                   padding: EdgeInsets.only(top: 0),
                   children: <Widget>[
                     NovelDetailHeader(novel),
+                    SizedBox(height: 10),
                     NovelSummaryView(novel.introduction, isSummaryUnfold,
                         changeSummaryMaxLines),
                     NovelDetailCell(

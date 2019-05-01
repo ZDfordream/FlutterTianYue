@@ -80,6 +80,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   @override
   void dispose() {
     routeObserver.unsubscribe(this);
+    scrollController.dispose();
     super.dispose();
   }
 

@@ -6,29 +6,16 @@ import 'package:tianyue/public.dart';
 
 class NovelDetailHeader extends StatelessWidget {
   final Novel novel;
+
   NovelDetailHeader(this.novel);
 
   @override
   Widget build(BuildContext context) {
     var width = Screen.width;
-    var height = 218.0 + Screen.topSafeHeight;
     return Container(
       width: width,
-      height: height,
       child: Stack(
-        children: <Widget>[
-          Image(
-            image: CachedNetworkImageProvider(novel.imgUrl),
-            fit: BoxFit.fitWidth,
-            width: width,
-            height: height,
-          ),
-          Container(color: Color(0xbb000000), width: width, height: height),
-          BackdropFilter(
-            filter: ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-            child: buildContent(context),
-          ),
-        ],
+        children: <Widget>[buildContent(context)],
       ),
     );
   }
@@ -37,10 +24,10 @@ class NovelDetailHeader extends StatelessWidget {
     var width = Screen.width;
     return Container(
       width: width,
-      padding: EdgeInsets.fromLTRB(15, 54 + Screen.topSafeHeight, 10, 0),
-      color: Colors.transparent,
+      padding: EdgeInsets.fromLTRB(15, 10 + Screen.topSafeHeight, 10, 0),
+      color: TYColor.white,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           NovelCoverImage(novel.imgUrl, width: 100, height: 133),
           SizedBox(width: 15),
@@ -48,11 +35,19 @@ class NovelDetailHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(novel.name, style: TextStyle(fontSize: fixedFontSize(18), color: Colors.white, fontWeight: FontWeight.bold)),
+                Text(novel.name,
+                    style: TextStyle(
+                        fontSize: fixedFontSize(18),
+                        color: TYColor.darkGray,
+                        fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                Text(novel.author, style: TextStyle(fontSize: fixedFontSize(14), color: TYColor.white)),
+                Text(novel.author,
+                    style: TextStyle(
+                        fontSize: fixedFontSize(14), color: TYColor.darkGray)),
                 SizedBox(height: 10),
-                Text('${novel.wordCount}万字 ${novel.price}书豆/千字', style: TextStyle(fontSize: fixedFontSize(14), color: TYColor.white)),
+                Text('${novel.wordCount}万字 ${novel.price}书豆/千字',
+                    style: TextStyle(
+                        fontSize: fixedFontSize(14), color: TYColor.darkGray)),
                 SizedBox(height: 10),
                 buildScore(),
                 SizedBox(height: 10),
@@ -63,7 +58,9 @@ class NovelDetailHeader extends StatelessWidget {
                     Expanded(
                       child: Text(
                         ' 续费包月会员，万本小说免费读 >',
-                        style: TextStyle(fontSize: fixedFontSize(14), color: Color(0xFFFEA900)),
+                        style: TextStyle(
+                            fontSize: fixedFontSize(14),
+                            color: TYColor.primary),
                         maxLines: 1,
                       ),
                     ),
@@ -78,7 +75,11 @@ class NovelDetailHeader extends StatelessWidget {
   }
 
   Widget buildScore() {
-    List<Widget> children = [Text('评分：${novel.score}分  ', style: TextStyle(fontSize: fixedFontSize(14), color: Color(0xfff8e71c)))];
+    List<Widget> children = [
+      Text('评分：${novel.score}分  ',
+          style:
+              TextStyle(fontSize: fixedFontSize(14), color: TYColor.primary))
+    ];
 
     var star = novel.score;
 
