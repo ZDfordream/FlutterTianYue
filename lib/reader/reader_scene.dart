@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 import 'package:tianyue/public.dart';
+import 'package:tianyue/widget/loading_indicator.dart';
 
 import 'article_provider.dart';
 import 'reader_utils.dart';
@@ -37,6 +38,8 @@ class ReaderSceneState extends State<ReaderScene>{
 
   List<Chapter> chapters = [];
 
+  PageState pageState = PageState.Loading;
+
   @override
   void initState() {
     super.initState();
@@ -57,8 +60,11 @@ class ReaderSceneState extends State<ReaderScene>{
 
   void setup() async {
     // 不延迟的话，安卓获取到的topSafeHeight是错的。
-
     topSafeHeight = Screen.topSafeHeight;
+
+    await Future.delayed(Duration(milliseconds: 2000), () {
+      pageState = PageState.Content;
+    });
 
     List<dynamic> chaptersResponse = await Request.get(action: 'catalog');
     chaptersResponse.forEach((data) {
@@ -90,6 +96,13 @@ class ReaderSceneState extends State<ReaderScene>{
     }
 
     setState(() {});
+  }
+
+  /// 失败重试
+  _retry() {
+    pageState = PageState.Loading;
+    setState(() {});
+    setup();
   }
 
   onScroll() {
@@ -257,7 +270,10 @@ class ReaderSceneState extends State<ReaderScene>{
   @override
   Widget build(BuildContext context) {
     if (currentArticle == null || chapters == null) {
-      return Scaffold();
+      return LoadingIndicator(
+        pageState,
+        retry: _retry,
+      );
     }
 
     return Scaffold(

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:tianyue/comic_home/comic_banner.dart';
 import 'package:tianyue/comic_home/comic_block_view.dart';
 import 'package:tianyue/comic_home/comic_recommend_everyday_view.dart';

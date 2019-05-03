@@ -104,30 +104,6 @@ class ComicDetailState extends State<ComicDetailScene>
     fetchData();
   }
 
-  Widget buildBottomWidget() {
-    Widget widget;
-    switch (_currentIndex) {
-      case 0:
-        widget = getBottomReader();
-        break;
-      case 1:
-        widget = getBottomReader();
-        break;
-      case 2:
-        widget = Container(
-          width: width,
-          height: 60,
-          child: Image.asset(
-            'img/detail_bottom_comment.png',
-            fit: BoxFit.contain,
-          ),
-          alignment: Alignment.center,
-        );
-        break;
-    }
-    return widget;
-  }
-
   Widget getBottomReader() {
     return Container(
       child: Row(
@@ -216,8 +192,8 @@ class ComicDetailState extends State<ComicDetailScene>
                                 floating: true,
                                 pinned: true,
                                 delegate: _SliverAppBarDelegate(
-                                    maxHeight: 55.0,
-                                    minHeight: 55.0,
+                                    maxHeight: Screen.topSafeHeight+30,
+                                    minHeight: Screen.topSafeHeight+30,
                                     child: Container(
                                       padding: EdgeInsets.only(
                                           top: Screen.topSafeHeight),
@@ -236,7 +212,7 @@ class ComicDetailState extends State<ComicDetailScene>
                     ),
                     Container(
                         width: width, height: 0.7, color: Color(0xffe1e1e1)),
-                    buildBottomWidget(),
+                    getBottomReader(),
                   ],
                 )),
             LoadingIndicator(
