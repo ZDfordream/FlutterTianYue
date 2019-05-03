@@ -7,6 +7,8 @@ import 'package:tianyue/comic_detail/comic_detail_tab_container.dart';
 import 'package:tianyue/public.dart';
 import 'dart:math' as math;
 
+import 'package:tianyue/widget/loading_indicator.dart';
+
 class ComicDetailScene extends StatefulWidget {
   final String url;
 
@@ -17,7 +19,7 @@ class ComicDetailScene extends StatefulWidget {
 }
 
 class ComicDetailState extends State<ComicDetailScene>
-    with RouteAware, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   ScrollController _scrollController = ScrollController();
 
   bool isOverviewDataReady = false;
@@ -44,11 +46,17 @@ class ComicDetailState extends State<ComicDetailScene>
 
   var titleList = ['详情', '目录', '评论'];
 
+  PageState pageState = PageState.Loading;
+
   @override
   void initState() {
     super.initState();
     eventBus.on(EventDetailLoadMore, (arg) {
       setState(() {});
+    });
+
+    Timer(Duration(milliseconds: 1000), () {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
     });
 
     tabList = getTabList();
@@ -64,19 +72,6 @@ class ComicDetailState extends State<ComicDetailScene>
     eventBus.off(EventDetailLoadMore);
   }
 
-  @override
-  void didPopNext() {
-    Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-  }
-
-  @override
-  void didPush() {
-    super.didPush();
-    Timer(Duration(milliseconds: 1000), () {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-    });
-  }
-
   List<Widget> getTabList() {
     return titleList
         .map((item) => Text(
@@ -89,12 +84,24 @@ class ComicDetailState extends State<ComicDetailScene>
     try {
       var responseJson = await Request.get(action: 'home_comic_overview');
       comicOverview = ComicOverview.fromJson(responseJson);
+
+      await Future.delayed(Duration(milliseconds: 2000), () {
+        pageState = PageState.Content;
+      });
+
       setState(() {
         isOverviewDataReady = true;
       });
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  /// 失败重试
+  _retry() {
+    pageState = PageState.Loading;
+    setState(() {});
+    fetchData();
   }
 
   Widget buildBottomWidget() {
@@ -189,48 +196,54 @@ class ComicDetailState extends State<ComicDetailScene>
       color: Colors.white,
       child: DefaultTabController(
           length: titleList.length,
-          child: Container(
-              color: TYColor.white,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: NestedScrollView(
-                      headerSliverBuilder:
-                          (BuildContext context, bool innerBoxIsScrolled) {
-                        return <Widget>[
-                          SliverToBoxAdapter(
-                            child: Container(
-                              color: Colors.white,
-                              child: ComicDetailOverViewView(comicOverview),
+          child: Stack(children: <Widget>[
+            Container(
+                color: TYColor.white,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: NestedScrollView(
+                        headerSliverBuilder:
+                            (BuildContext context, bool innerBoxIsScrolled) {
+                          return <Widget>[
+                            SliverToBoxAdapter(
+                              child: Container(
+                                color: Colors.white,
+                                child: ComicDetailOverViewView(comicOverview),
+                              ),
                             ),
-                          ),
-                          SliverPersistentHeader(
-                              floating: true,
-                              pinned: true,
-                              delegate: _SliverAppBarDelegate(
-                                  maxHeight: 55.0,
-                                  minHeight: 55.0,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        top: Screen.topSafeHeight),
-                                    child: buildTabBar(),
-                                    color: TYColor.white,
-                                    alignment: Alignment.center,
-                                  ))),
-                        ];
-                      },
-                      body: ComicDetailTabContainer(
-                        tabController: _tabController,
-                        scrollController: _scrollController,
+                            SliverPersistentHeader(
+                                floating: true,
+                                pinned: true,
+                                delegate: _SliverAppBarDelegate(
+                                    maxHeight: 55.0,
+                                    minHeight: 55.0,
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          top: Screen.topSafeHeight),
+                                      child: buildTabBar(),
+                                      color: TYColor.white,
+                                      alignment: Alignment.center,
+                                    ))),
+                          ];
+                        },
+                        body: ComicDetailTabContainer(
+                          tabController: _tabController,
+                          scrollController: _scrollController,
+                        ),
+                        controller: _scrollController,
                       ),
-                      controller: _scrollController,
                     ),
-                  ),
-                  Container(
-                      width: width, height: 0.7, color: Color(0xffe1e1e1)),
-                  buildBottomWidget(),
-                ],
-              ))),
+                    Container(
+                        width: width, height: 0.7, color: Color(0xffe1e1e1)),
+                    buildBottomWidget(),
+                  ],
+                )),
+            LoadingIndicator(
+              pageState,
+              retry: _retry,
+            ),
+          ])),
     );
   }
 }

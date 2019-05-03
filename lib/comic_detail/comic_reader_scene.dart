@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/widget/loading_indicator.dart';
 
 class ComicReaderScene extends StatefulWidget {
   final String url;
@@ -18,6 +19,8 @@ class ComicReaderState extends State<ComicReaderScene> with RouteAware {
 
   bool isDataReady = false;
   List<String> imageList = [];
+
+  PageState pageState = PageState.Loading;
 
   @override
   void initState() {
@@ -45,12 +48,24 @@ class ComicReaderState extends State<ComicReaderScene> with RouteAware {
       responseJson["comicPictureList"].forEach((data) {
         imageList.add(data);
       });
+
+      await Future.delayed(Duration(milliseconds: 2000), () {
+        pageState = PageState.Content;
+      });
+
       setState(() {
         isDataReady = true;
       });
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  /// 失败重试
+  _retry() {
+    pageState = PageState.Loading;
+    setState(() {});
+    fetchData();
   }
 
   Widget buildWidget(int index) {
@@ -60,7 +75,10 @@ class ComicReaderState extends State<ComicReaderScene> with RouteAware {
   @override
   Widget build(BuildContext context) {
     if (!isDataReady) {
-      return Container();
+      return LoadingIndicator(
+        pageState,
+        retry: _retry,
+      );
     }
     return Container(
         color: TYColor.white,

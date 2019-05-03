@@ -23,7 +23,7 @@ class ReaderScene extends StatefulWidget {
   ReaderSceneState createState() => ReaderSceneState();
 }
 
-class ReaderSceneState extends State<ReaderScene> with RouteAware {
+class ReaderSceneState extends State<ReaderScene>{
   int pageIndex = 0;
   bool isMenuVisiable = false;
   PageController pageController = PageController(keepPage: false);
@@ -42,32 +42,21 @@ class ReaderSceneState extends State<ReaderScene> with RouteAware {
     super.initState();
     pageController.addListener(onScroll);
 
+    Timer(Duration(milliseconds: 500), () {
+      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
+    });
+
     setup();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
-  }
-
-  @override
-  void didPop() {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
   }
 
   @override
   void dispose() {
     pageController.dispose();
-    routeObserver.unsubscribe(this);
     super.dispose();
   }
 
   void setup() async {
-    await SystemChrome.setEnabledSystemUIOverlays([]);
     // 不延迟的话，安卓获取到的topSafeHeight是错的。
-    await Future.delayed(const Duration(milliseconds: 100), () {});
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 
     topSafeHeight = Screen.topSafeHeight;
 

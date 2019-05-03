@@ -13,7 +13,7 @@ class ComicHomeScene extends StatefulWidget {
   State<StatefulWidget> createState() => ComicHomeState();
 }
 
-class ComicHomeState extends State<ComicHomeScene> with RouteAware {
+class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClientMixin{
   Comic comic;
 
   /// banner
@@ -37,6 +37,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   @override
   void initState() {
     super.initState();
+
     fetchData();
     scrollController.addListener(() {
       var offset = scrollController.offset;
@@ -59,37 +60,9 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
-  }
-
-  @override
-  void didPopNext() {
-    Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-  }
-
-  @override
-  void didPush() {
-    super.didPush();
-    var timer = Timer(Duration(milliseconds: 1000), () {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-    });
-  }
-
-  @override
   void dispose() {
-    routeObserver.unsubscribe(this);
-    scrollController.dispose();
     super.dispose();
-  }
-
-  updateStatusBar() {
-    if (navAlpha == 1) {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
-    } else {
-      Screen.updateStatusBarStyle(SystemUiOverlayStyle.light);
-    }
+    scrollController.dispose();
   }
 
   Future<void> fetchData() async {
@@ -215,4 +188,7 @@ class ComicHomeState extends State<ComicHomeScene> with RouteAware {
       ]),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

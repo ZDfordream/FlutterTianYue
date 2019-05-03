@@ -70,7 +70,7 @@ class VideoWidgetState extends State<VideoWidget> {
         ));
   }
 
-  getControlView() {
+  getPauseView() {
     return Offstage(
       offstage: _hideActionButton,
       child: Stack(
@@ -87,6 +87,100 @@ class VideoWidgetState extends State<VideoWidget> {
     );
   }
 
+  // 分享，转发等功能按钮
+  getRightActionView() {
+    return Positioned(
+        bottom: 0,
+        right: 0,
+        child: Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 15, 120),
+            child: Column(
+              children: <Widget>[
+                Image.asset('img/video_icon_praise.png', width: 36, height: 36),
+                Text(
+                  "1.6w",
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      decoration: TextDecoration.none),
+                ),
+                SizedBox(height: 8),
+                Image.asset('img/video_msg_icon.png', width: 36, height: 36),
+                Text(
+                  "1.3w",
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      decoration: TextDecoration.none),
+                ),
+                SizedBox(height: 8),
+                Image.asset('img/video_share_icon.png', width: 36, height: 36),
+                Text(
+                  "2.1w",
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      decoration: TextDecoration.none),
+                ),
+              ],
+            )));
+  }
+
+  getLeftActionView() {
+    return Positioned(
+      child: Container(
+          width: Screen.width,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(left: 15),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "奔驰G级AMG",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              decoration: TextDecoration.none),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          "@没那么简单",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              decoration: TextDecoration.none),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          "最爱大奔",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              decoration: TextDecoration.none),
+                        ),
+                        SizedBox(height: 8),
+                      ]),
+                ),
+                Container(width: Screen.height, height: 1, color: Colors.white),
+                Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: 15),
+                    child: Text(
+                      "点赞是鼓励，评论才是真爱...",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          decoration: TextDecoration.none),
+                    ),
+                    height: 50),
+              ])),
+      bottom: 0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
@@ -94,7 +188,7 @@ class VideoWidgetState extends State<VideoWidget> {
         child: Stack(
           children: <Widget>[
             VideoPlayer(_controller),
-            getControlView(),
+            getPauseView(),
           ],
         ),
         onTap: () {
@@ -110,6 +204,8 @@ class VideoWidgetState extends State<VideoWidget> {
         },
       ),
       getPreviewImg(),
+      getRightActionView(),
+      getLeftActionView(),
     ]);
   }
 }

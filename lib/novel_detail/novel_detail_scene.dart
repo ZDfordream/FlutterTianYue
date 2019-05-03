@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 import 'package:tianyue/public.dart';
+import 'package:tianyue/widget/loading_indicator.dart';
 
 import 'novel_detail_header.dart';
 import 'novel_summary_view.dart';
@@ -20,7 +21,7 @@ class NovelDetailScene extends StatefulWidget {
   NovelDetailSceneState createState() => NovelDetailSceneState();
 }
 
-class NovelDetailSceneState extends State<NovelDetailScene>{
+class NovelDetailSceneState extends State<NovelDetailScene> {
   Novel novel;
   List<Novel> recommendNovels = [];
   List<NovelComment> comments = [];
@@ -31,6 +32,7 @@ class NovelDetailSceneState extends State<NovelDetailScene>{
   int commentMemberCount = 0;
 
   bool isVisible = true;
+  PageState pageState = PageState.Loading;
 
   @override
   void initState() {
@@ -85,6 +87,11 @@ class NovelDetailSceneState extends State<NovelDetailScene>{
 
       var commentsResponse =
           await Request.post(action: 'novel_comment', params: {'id': novelId});
+
+      await Future.delayed(Duration(milliseconds: 2000), () {
+        pageState = PageState.Content;
+      });
+
       List<NovelComment> comments = [];
       commentsResponse.forEach((data) {
         comments.add(NovelComment.fromJson(data));
@@ -103,8 +110,15 @@ class NovelDetailSceneState extends State<NovelDetailScene>{
         this.recommendNovels = recommendNovels;
       });
     } catch (e) {
-      Toast.show(e.toString());
+
     }
+  }
+
+  /// 失败重试
+  _retry() {
+    pageState = PageState.Loading;
+    setState(() {});
+    fetchData();
   }
 
   Widget buildNavigationBar() {
@@ -208,9 +222,11 @@ class NovelDetailSceneState extends State<NovelDetailScene>{
 
   @override
   Widget build(BuildContext context) {
-
     if (this.novel == null) {
-      return Scaffold(appBar: AppBar(elevation: 0));
+      return LoadingIndicator(
+        pageState,
+        retry: _retry,
+      );
     }
     return Scaffold(
       body: Stack(

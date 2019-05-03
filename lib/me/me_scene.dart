@@ -60,18 +60,14 @@ class MeScene extends StatelessWidget {
             title: '加载更多示例',
             iconName: 'img/me_record.png',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ScrollDemoScene();
-              }));
+              AppNavigator.push(context, ScrollDemoScene());
             },
           ),
           MeCell(
             title: '地图',
             iconName: 'img/me_date.png',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return MapScene();
-              }));
+              AppNavigator.push(context, MapScene());
             },
           ),
           MeCell(
@@ -92,9 +88,7 @@ class MeScene extends StatelessWidget {
             title: '设置',
             iconName: 'img/me_setting.png',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SettingScene();
-              }));
+              AppNavigator.push(context, SettingScene());
             },
           ),
           MeCell(

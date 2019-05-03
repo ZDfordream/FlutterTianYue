@@ -29,7 +29,7 @@ class SplashSceneState extends State<SplashScene>
 
   goHomePage() {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context) => RootScene()),
+        CupertinoPageRoute(builder: (BuildContext context) => RootScene()),
             (Route<dynamic> route) => false);
   }
 

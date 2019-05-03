@@ -18,7 +18,7 @@ class _WebSceneState extends State<WebScene> {
     return WebviewScaffold(
       url: this.widget.url,
       appBar: AppBar(
-        title: Text(this.widget.title ?? '书旗'),
+        title: Text(this.widget.title ?? '腾讯动漫'),
         actions: <Widget>[
           GestureDetector(
             onTap: () {

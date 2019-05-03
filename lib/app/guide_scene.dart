@@ -1,4 +1,5 @@
 import 'package:flukit/flukit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tianyue/app/root_scene.dart';
 import 'package:tianyue/public.dart';
@@ -116,7 +117,7 @@ class GuideSceneState extends State<GuideScene> {
 
   void _goMain() {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context) => RootScene()),
+        CupertinoPageRoute(builder: (BuildContext context) => RootScene()),
         (Route<dynamic> route) => false);
   }
 }
