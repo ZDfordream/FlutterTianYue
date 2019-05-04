@@ -6,6 +6,7 @@ import 'package:tianyue/comic_home/comic_block_view.dart';
 import 'package:tianyue/comic_home/comic_recommend_everyday_view.dart';
 import 'package:tianyue/comic_home/comic_update_today_view.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/widget/loading_indicator.dart';
 
 class ComicHomeScene extends StatefulWidget {
   @override
@@ -32,6 +33,8 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
 
   /// 是否请求数据完毕
   bool isDataReady = false;
+
+  PageState pageState = PageState.Loading;
 
   @override
   void initState() {
@@ -66,6 +69,11 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
 
   Future<void> fetchData() async {
     try {
+
+      await Future.delayed(Duration(milliseconds: 2000), () {
+        pageState = PageState.Content;
+      });
+
       var responseJson = await Request.get(action: 'home_comic');
       banner.clear();
       responseJson["banner"].forEach((data) {
@@ -88,6 +96,13 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
       print(e.toString());
       Toast.show(e.toString());
     }
+  }
+
+  /// 失败重试
+  _retry() {
+    pageState = PageState.Loading;
+    setState(() {});
+    fetchData();
   }
 
   Widget buildActions(Color iconColor) {
@@ -145,9 +160,6 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
   }
 
   Widget buildModule(BuildContext context, int index) {
-    if (blockList == null || blockList.length == 0) {
-      return new Container();
-    }
     Widget widget;
     switch (index) {
       case 0:
@@ -168,6 +180,12 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
 
   @override
   Widget build(BuildContext context) {
+    if (blockList == null || blockList.length == 0) {
+      return LoadingIndicator(
+        pageState,
+        retry: _retry,
+      );
+    }
     return Scaffold(
       backgroundColor: TYColor.comicBg,
       body: Stack(children: [

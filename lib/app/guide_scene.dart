@@ -53,7 +53,7 @@ class GuideSceneState extends State<GuideScene> {
               alignment: Alignment.bottomCenter,
               child: new Container(
                 margin: EdgeInsets.only(bottom: 50.0),
-                child: new InkWell(
+                child: new GestureDetector(
                   onTap: () {
                     _goMain();
                   },

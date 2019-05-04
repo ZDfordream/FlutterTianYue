@@ -109,9 +109,7 @@ class NovelDetailSceneState extends State<NovelDetailScene> {
         this.comments = comments;
         this.recommendNovels = recommendNovels;
       });
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
 
   /// 失败重试
@@ -231,40 +229,44 @@ class NovelDetailSceneState extends State<NovelDetailScene> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView(
-                  controller: scrollController,
-                  padding: EdgeInsets.only(top: 0),
-                  children: <Widget>[
-                    NovelDetailHeader(novel),
-                    SizedBox(height: 10),
-                    NovelSummaryView(novel.introduction, isSummaryUnfold,
-                        changeSummaryMaxLines),
-                    NovelDetailCell(
-                      iconName: 'img/detail_latest.png',
-                      title: '最新',
-                      subtitle: novel.lastChapter.title,
-                      attachedWidget: Text(novel.status,
-                          style: TextStyle(
-                              fontSize: 14, color: novel.statusColor())),
-                    ),
-                    NovelDetailCell(
-                      iconName: 'img/detail_chapter.png',
-                      title: '目录',
-                      subtitle: '共${novel.chapterCount}章',
-                    ),
-                    buildTags(),
-                    SizedBox(height: 10),
-                    buildComment(),
-                    SizedBox(height: 10),
-                    NovelDetailRecommendView(recommendNovels),
-                  ],
+          Container(
+            color: TYColor.white,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView(
+                    controller: scrollController,
+                    padding: EdgeInsets.only(top: 0),
+                    physics: BouncingScrollPhysics(),
+                    children: <Widget>[
+                      NovelDetailHeader(novel),
+                      SizedBox(height: 10),
+                      NovelSummaryView(novel.introduction, isSummaryUnfold,
+                          changeSummaryMaxLines),
+                      NovelDetailCell(
+                        iconName: 'img/detail_latest.png',
+                        title: '最新',
+                        subtitle: novel.lastChapter.title,
+                        attachedWidget: Text(novel.status,
+                            style: TextStyle(
+                                fontSize: 14, color: novel.statusColor())),
+                      ),
+                      NovelDetailCell(
+                        iconName: 'img/detail_chapter.png',
+                        title: '目录',
+                        subtitle: '共${novel.chapterCount}章',
+                      ),
+                      buildTags(),
+                      SizedBox(height: 10),
+                      buildComment(),
+                      SizedBox(height: 10),
+                      NovelDetailRecommendView(recommendNovels),
+                    ],
+                  ),
                 ),
-              ),
-              NovelDetailToolbar(novel),
-            ],
+                NovelDetailToolbar(novel)
+              ],
+            ),
           ),
           buildNavigationBar(),
         ],
