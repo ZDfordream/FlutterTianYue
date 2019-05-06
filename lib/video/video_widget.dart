@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/video/video_detail_scene.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
@@ -44,7 +46,8 @@ class VideoWidgetState extends State<VideoWidget> {
     _controller = VideoPlayerController.asset(widget.url)
       ..initialize()
       ..setLooping(true).then((_) {
-        if (widget.positionTag == 0) {
+        if (widget.positionTag == 0 && VideoDetailScene.firstInitTimes == 1) {
+          VideoDetailScene.firstInitTimes = 2;
           _controller.play();
           videoPrepared = true;
         }
@@ -96,32 +99,52 @@ class VideoWidgetState extends State<VideoWidget> {
             margin: EdgeInsets.fromLTRB(0, 0, 15, 120),
             child: Column(
               children: <Widget>[
-                Image.asset('img/video_icon_praise.png', width: 36, height: 36),
-                Text(
-                  "1.6w",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      decoration: TextDecoration.none),
-                ),
+                Container(
+                    child: Column(children: <Widget>[
+                  Image.asset('img/video_icon_praise.png',
+                      width: 36, height: 36),
+                  Text(
+                    "1.6w",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        decoration: TextDecoration.none),
+                  )
+                ])),
                 SizedBox(height: 8),
-                Image.asset('img/video_msg_icon.png', width: 36, height: 36),
-                Text(
-                  "1.3w",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      decoration: TextDecoration.none),
-                ),
+                GestureDetector(
+                    child: Container(
+                        child: Column(children: <Widget>[
+                      Image.asset('img/video_msg_icon.png',
+                          width: 36, height: 36),
+                      Text(
+                        "1.3w",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            decoration: TextDecoration.none),
+                      ),
+                    ])),
+                    onTap: () {
+                      Share.share(this.widget.url);
+                    }),
                 SizedBox(height: 8),
-                Image.asset('img/video_share_icon.png', width: 36, height: 36),
-                Text(
-                  "2.1w",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      decoration: TextDecoration.none),
-                ),
+                GestureDetector(
+                    child: Container(
+                        child: Column(children: <Widget>[
+                      Image.asset('img/video_share_icon.png',
+                          width: 36, height: 36),
+                      Text(
+                        "2.1w",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            decoration: TextDecoration.none),
+                      ),
+                    ])),
+                    onTap: () {
+                      Share.share("全最强开源flutter");
+                    }),
               ],
             )));
   }
