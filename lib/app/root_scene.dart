@@ -21,13 +21,13 @@ class RootSceneState extends State<RootScene> {
   PageState pageState = PageState.Loading;
   List<Image> _tabImages = [
     Image.asset('img/tab_comic_home_n.png'),
-    Image.asset('img/tab_book_home_n.png'),
+    Image.asset('img/tab_video_home_n.png'),
     Image.asset('img/tab_book_home_n.png'),
     Image.asset('img/tab_mine_n.png'),
   ];
   List<Image> _tabSelectedImages = [
     Image.asset('img/tab_home_comic_p.png'),
-    Image.asset('img/tab_book_home_p.png'),
+    Image.asset('img/tab_video_home_p.png'),
     Image.asset('img/tab_book_home_p.png'),
     Image.asset('img/tab_mine_p.png'),
   ];
