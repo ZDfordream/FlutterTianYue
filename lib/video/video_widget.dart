@@ -226,9 +226,9 @@ class VideoWidgetState extends State<VideoWidget> {
           setState(() {});
         },
       ),
-      getPreviewImg(),
-      getRightActionView(),
-      getLeftActionView(),
+      getPreviewImg(), ///预览图
+      getRightActionView(), /// 右侧转发，评论按钮
+      getLeftActionView(), /// 左侧文案
     ]);
   }
 }

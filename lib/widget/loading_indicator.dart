@@ -72,6 +72,25 @@ class LoadingIndicatorState extends State<LoadingIndicator> {
               alignment: Alignment.center,
             ));
         break;
+      case PageState.Empty:
+        widget = GestureDetector(
+            onTap: () {
+              if (this.widget.retry != null) {
+                this.widget.retry();
+              }
+            },
+            child: Container(
+              color: TYColor.white,
+              child: Text("暂无数据",
+                  style: TextStyle(
+                      color: TYColor.darkGray,
+                      fontSize: 16,
+                      decoration: TextDecoration.none)),
+              width: Screen.width,
+              height: Screen.height,
+              alignment: Alignment.center,
+            ));
+        break;
     }
     return widget;
   }
@@ -85,6 +104,7 @@ class LoadingIndicatorState extends State<LoadingIndicator> {
 enum PageState {
   Content, // 加载成功
   Loading, // 加载中
+  Empty, // 空
   LoadingNetError, // 网络错误
   LoadingError, // 加载异常
 }

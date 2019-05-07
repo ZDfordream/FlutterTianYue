@@ -24,18 +24,11 @@ class VideoDetailState extends State<VideoDetailScene> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      print(_controller.page.toString() +
-          "----" +
-          _controller.page.floor().toString() +
-          "----");
       if (_controller.page.floor() == _controller.page) {
         eventBus.emit(
             EventVideoPlayPosition + _controller.page.floor().toString(),
             _controller.page.floor());
       }
-      print(_controller.page.toString() +
-          "----" +
-          _controller.page.floor().toString());
     });
   }
 

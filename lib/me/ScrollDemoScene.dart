@@ -25,14 +25,7 @@ class _ScrollDemoSceneState extends State<ScrollDemoScene> {
     });
   }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
   _getMoreData() async {
-    // em
     _loadString = _pageIndex >= 3 ? "已加载到底部" : "正在加载更多...";
     _hasMore = _pageIndex >= 3 ? false : true;
     if (!_hasMore) {
@@ -45,6 +38,12 @@ class _ScrollDemoSceneState extends State<ScrollDemoScene> {
     setState(() {
       items.addAll(newEntries);
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> fetchData() async {

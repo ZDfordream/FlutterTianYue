@@ -7,8 +7,7 @@ class FrameAnimationImage extends StatefulWidget {
   final double height;
   int interval = 200;
 
-  FrameAnimationImage(
-      {this.width = 150, this.height = 150, this.interval = 200});
+  FrameAnimationImage({this.width = 150, this.height = 150, this.interval = 200});
 
   @override
   State<StatefulWidget> createState() => FrameAnimationImageState();
@@ -48,7 +47,6 @@ class FrameAnimationImageState extends State<FrameAnimationImage>
         .animate(_controller)
           ..addListener(() {
             setState(() {
-              // the state that has changed here is the animation object’s value
             });
           });
 

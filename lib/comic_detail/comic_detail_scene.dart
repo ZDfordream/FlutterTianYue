@@ -123,7 +123,6 @@ class ComicDetailState extends State<ComicDetailScene>
             width: width * 0.4,
             height: 40,
             child: RaisedButton(
-
                 /// 水波纹不显示
                 splashColor: Colors.transparent,
                 disabledTextColor: Color(0xffff0000),
@@ -205,9 +204,7 @@ class ComicDetailState extends State<ComicDetailScene>
                         },
                         body: ComicDetailTabContainer(
                           tabController: _tabController,
-                          scrollController: _scrollController,
                         ),
-                        controller: _scrollController,
                       ),
                     ),
                     Container(

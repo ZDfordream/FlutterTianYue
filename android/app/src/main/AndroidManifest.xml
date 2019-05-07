@@ -37,7 +37,7 @@
     -->
     <application
         android:name="com.zhudong.tianyue.MainApplication"
-        android:label="天阅"
+        android:label="动漫"
         android:icon="@mipmap/ic_launcher">
 
         <meta-data

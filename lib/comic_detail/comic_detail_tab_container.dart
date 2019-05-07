@@ -7,10 +7,9 @@ import 'package:tianyue/public.dart';
 
 class ComicDetailTabContainer extends StatefulWidget {
   final TabController tabController;
-  final ScrollController scrollController;
 
   ComicDetailTabContainer(
-      {Key key, @required this.tabController, @required this.scrollController})
+      {Key key, @required this.tabController})
       : super(key: key);
 
   @override
@@ -67,7 +66,7 @@ class ComicDetailTabState extends State<ComicDetailTabContainer> {
       children: <Widget>[
         ComicDetailTabOne(comicDetail),
         ComicChapterTabTwo(comicChapter),
-        ComicCommentTabThree(widget.scrollController),
+        ComicCommentTabThree(),
       ],
       controller: widget.tabController,
     );

@@ -8,6 +8,7 @@ import 'package:tianyue/book_home/home_scene.dart';
 import 'package:tianyue/comic_home/comic_home_scene.dart';
 import 'package:tianyue/me/me_scene.dart';
 import 'package:tianyue/video/video_scene.dart';
+import 'package:tianyue/widget/loading_indicator.dart';
 
 class RootScene extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class RootScene extends StatefulWidget {
 class RootSceneState extends State<RootScene> {
   int _tabIndex = 0;
   bool isFinishSetup = false;
+  PageState pageState = PageState.Loading;
   List<Image> _tabImages = [
     Image.asset('img/tab_comic_home_n.png'),
     Image.asset('img/tab_book_home_n.png'),
@@ -61,6 +63,9 @@ class RootSceneState extends State<RootScene> {
 
   setupApp() async {
     preferences = await SharedPreferences.getInstance();
+    await Future.delayed(Duration(milliseconds: 2000), () {
+      pageState = PageState.Content;
+    });
     setState(() {
       isFinishSetup = true;
     });
@@ -69,7 +74,9 @@ class RootSceneState extends State<RootScene> {
   @override
   Widget build(BuildContext context) {
     if (!isFinishSetup) {
-      return Container();
+      return LoadingIndicator(
+        pageState,
+      );
     }
 
     return Scaffold(

@@ -3,12 +3,12 @@ import 'package:tianyue/utility/toast.dart';
 
 class FlutterBridge{
 
-  static const platform = const MethodChannel('samples.flutter.io/battery');
+  static const _platform = const MethodChannel('samples.flutter.io/battery');
 
-  static Future<Null> getBatteryLevel() async {
+  static Future<void> getBatteryLevel() async {
     String batteryLevel;
     try {
-      var result = await platform.invokeMethod('getBatteryLevel');
+      var result = await _platform.invokeMethod('getBatteryLevel');
       batteryLevel = 'Battery level at $result %';
       Toast.show(batteryLevel);
     } on PlatformException catch (e) {
@@ -16,9 +16,9 @@ class FlutterBridge{
     }
   }
 
-  static Future<Null> goAboutActivity() async {
+  static Future<void> goAboutActivity() async {
     try {
-      platform.invokeMethod('goAboutActivity');
+      _platform.invokeMethod('goAboutActivity');
     } on PlatformException catch (e) {
       Toast.show(e.toString());
     }

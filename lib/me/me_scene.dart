@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tianyue/me/PaintWidgetScene.dart';
 import 'package:tianyue/me/ScrollDemoScene.dart';
 import 'package:tianyue/me/map_scene.dart';
 import 'package:tianyue/public.dart';
@@ -9,7 +10,6 @@ import 'me_header.dart';
 import 'setting_scene.dart';
 
 class MeScene extends StatelessWidget {
-
   Widget buildCells(BuildContext context) {
     Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
     return Container(
@@ -18,8 +18,7 @@ class MeScene extends StatelessWidget {
           MeCell(
             title: '钱包',
             iconName: 'img/me_wallet.png',
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
           MeCell(
             title: '消费充值记录',
@@ -52,9 +51,11 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '个性换肤',
+            title: '自定义widget',
             iconName: 'img/me_theme.png',
-            onPressed: () {},
+            onPressed: () {
+              AppNavigator.push(context, PaintWidgetScene());
+            },
           ),
           MeCell(
             title: '加载更多示例',
@@ -95,8 +96,7 @@ class MeScene extends StatelessWidget {
             title: '网页',
             iconName: 'img/me_feedback.png',
             onPressed: () {
-              AppNavigator.pushWeb(
-                  context, 'https://www.baidu.com', '百度');
+              AppNavigator.pushWeb(context, 'https://www.baidu.com', '百度');
             },
           ),
         ],

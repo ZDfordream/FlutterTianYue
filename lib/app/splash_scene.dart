@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tianyue/app/root_scene.dart';
@@ -30,7 +31,7 @@ class SplashSceneState extends State<SplashScene>
   goHomePage() {
     Navigator.of(context).pushAndRemoveUntil(
         CupertinoPageRoute(builder: (BuildContext context) => RootScene()),
-            (Route<dynamic> route) => false);
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -48,7 +49,6 @@ class SplashSceneState extends State<SplashScene>
             ),
           ],
         ),
-
         Container(
           child: Align(
             alignment: Alignment.topRight,

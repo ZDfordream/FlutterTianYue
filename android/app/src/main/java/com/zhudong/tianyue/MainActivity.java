@@ -31,24 +31,21 @@ public class MainActivity extends FlutterActivity {
         ViewRegistrant.registerWith(this, mapView);
 
         new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
-                new MethodCallHandler() {
-                    @Override
-                    public void onMethodCall(MethodCall call, Result result) {
-                        if (call.method.equals("getBatteryLevel")) {
-                            int batteryLevel = MainActivity.this.getBatteryLevel();
+                (call, result) -> {
+                    if (call.method.equals("getBatteryLevel")) {
+                        int batteryLevel = MainActivity.this.getBatteryLevel();
 
-                            if (batteryLevel != -1) {
-                                result.success(batteryLevel);
-                            } else {
-                                result.error("UNAVAILABLE", "Battery level not available.", null);
-                            }
-                        } else if (call.method.equals("goAboutActivity")) {
-                            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                            MainActivity.this.startActivity(intent);
-                            result.success("success");
+                        if (batteryLevel != -1) {
+                            result.success(batteryLevel);
                         } else {
-                            result.notImplemented();
+                            result.error("UNAVAILABLE", "Battery level not available.", null);
                         }
+                    } else if (call.method.equals("goAboutActivity")) {
+                        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        result.success("success");
+                    } else {
+                        result.notImplemented();
                     }
                 });
     }
@@ -64,7 +61,6 @@ public class MainActivity extends FlutterActivity {
             batteryLevel = (intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100) /
                     intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
         }
-
         return batteryLevel;
     }
 
