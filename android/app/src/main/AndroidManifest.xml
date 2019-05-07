@@ -37,8 +37,8 @@
     -->
     <application
         android:name="com.zhudong.tianyue.MainApplication"
-        android:label="动漫"
-        android:icon="@mipmap/ic_launcher">
+        android:label="天天动漫"
+        android:icon="@mipmap/icon_z_comic">
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

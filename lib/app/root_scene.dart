@@ -71,6 +71,26 @@ class RootSceneState extends State<RootScene> {
     });
   }
 
+  Future<bool> _onWillPop() {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('提示'),
+        content: new Text('客官，确定退出app?'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('放弃'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('退出'),
+          ),
+        ],
+      ),
+    ) ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!isFinishSetup) {
@@ -78,32 +98,34 @@ class RootSceneState extends State<RootScene> {
         pageState,
       );
     }
-
-    return Scaffold(
-      body: IndexedStack(
-        children: <Widget>[
-          ComicHomeScene(),
-          VideoScene(),
-          HomeScene(),
-          MeScene(),
-        ],
-        index: _tabIndex,
-      ),
-      bottomNavigationBar: CupertinoTabBar(
-        backgroundColor: Colors.white,
-        activeColor: TYColor.primary,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: getTabIcon(0)),
-          BottomNavigationBarItem(icon: getTabIcon(1)),
-          BottomNavigationBarItem(icon: getTabIcon(2)),
-          BottomNavigationBarItem(icon: getTabIcon(3)),
-        ],
-        currentIndex: _tabIndex,
-        onTap: (index) {
-          setState(() {
-            _tabIndex = index;
-          });
-        },
+    return WillPopScope(
+      onWillPop: _onWillPop, // look here!
+      child: Scaffold(
+        body: IndexedStack(
+          children: <Widget>[
+            ComicHomeScene(),
+            VideoScene(),
+            HomeScene(),
+            MeScene(),
+          ],
+          index: _tabIndex,
+        ),
+        bottomNavigationBar: CupertinoTabBar(
+          backgroundColor: Colors.white,
+          activeColor: TYColor.primary,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: getTabIcon(0)),
+            BottomNavigationBarItem(icon: getTabIcon(1)),
+            BottomNavigationBarItem(icon: getTabIcon(2)),
+            BottomNavigationBarItem(icon: getTabIcon(3)),
+          ],
+          currentIndex: _tabIndex,
+          onTap: (index) {
+            setState(() {
+              _tabIndex = index;
+            });
+          },
+        ),
       ),
     );
   }
