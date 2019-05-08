@@ -68,7 +68,7 @@ public class MainActivity extends FlutterActivity {
                                             events.success(timer);// 发送事件
                                         },
                                         (Throwable error) -> {
-                                            events.error("STREAM", "Error in processing observable", error.getMessage());
+                                            events.error("STREAM", "EventChannel发生异常", error.getMessage());
                                         }
                                 );
                     }
