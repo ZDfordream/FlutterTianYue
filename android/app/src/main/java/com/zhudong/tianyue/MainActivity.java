@@ -7,20 +7,28 @@ import android.os.BatteryManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.amap.api.maps2d.MapView;
 
+import java.util.concurrent.TimeUnit;
+
 import io.flutter.app.FlutterActivity;
+import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugins.GeneratedPluginRegistrant;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 
 public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "samples.flutter.io/battery";
+    public static final String STREAM = "com.yourcompany.eventchannelsample/stream";
     private MapView mapView;
+    private Disposable timerSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,33 @@ public class MainActivity extends FlutterActivity {
                         result.notImplemented();
                     }
                 });
+
+        new EventChannel(getFlutterView(), STREAM).setStreamHandler(
+                new EventChannel.StreamHandler() {
+                    @Override
+                    public void onListen(Object args, final EventChannel.EventSink events) {
+                        timerSubscription = Observable
+                                .interval(0, 1, TimeUnit.SECONDS)
+                                .subscribe(
+                                        (Long timer) -> {
+                                            events.success(timer);// 发送事件
+                                        },
+                                        (Throwable error) -> {
+                                            events.error("STREAM", "Error in processing observable", error.getMessage());
+                                        }
+                                );
+                    }
+
+                    @Override
+                    public void onCancel(Object args) {
+                        if (timerSubscription != null) {
+                            timerSubscription.dispose();
+                            timerSubscription = null;
+                        }
+                    }
+                }
+        );
+
     }
 
     private int getBatteryLevel() {

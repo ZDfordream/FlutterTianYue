@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tianyue/me/EventChannelScene.dart';
 import 'package:tianyue/me/PaintWidgetScene.dart';
 import 'package:tianyue/me/ScrollDemoScene.dart';
 import 'package:tianyue/me/map_scene.dart';
@@ -41,14 +42,16 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '公益行动',
-            iconName: 'img/me_action.png',
-            onPressed: () {},
-          ),
-          MeCell(
             title: '我的收藏',
             iconName: 'img/me_favorite.png',
             onPressed: () {},
+          ),
+          MeCell(
+            title: 'EventChannel示例',
+            iconName: 'img/me_action.png',
+            onPressed: () {
+              AppNavigator.push(context, EventChannelScene());
+            },
           ),
           MeCell(
             title: '自定义widget',
