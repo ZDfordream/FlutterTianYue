@@ -1,5 +1,5 @@
 ## An open source App developed by Flutter，Provide richer functionality（give me a star）
-   readbook,comic,viewplay,if you want to get started with flutter,just learn this project is a good choice.
+   readbook,comic,videoplay,if you want to get started with flutter,just learn this project is a good choice.
 
 ## screen shot
 

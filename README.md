@@ -1,7 +1,7 @@
 Language: [English](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README-en.md) | [中文简体](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README.md)
 
 ## Flutter开发一款跨平台的开源漫画App (放慢脚步，给个star)
-仿腾讯动漫，抖音视频播放效果，小说阅读，我想，你需要的效果，此项目大致都有，项目持续更新中...
+仿腾讯动漫，抖音视频播放效果，小说阅读，我猜想，你所需要的效果，此项目大致都有，项目持续更新中...
 
 ## screen shot
 
