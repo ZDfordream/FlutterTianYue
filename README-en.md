@@ -1,21 +1,21 @@
-## An open source Github client App developed by Flutter，Provide richer functionality
+## An open source App developed by Flutter，Provide richer functionality
    readbook,comic,viewplay,if you want to get started with flutter,just learn this project is a good choice.
 
 
 ## screen shot
 
-<img src="screenshot/screenshot1" width="330" hspace="20">
-<img src="screenshot/screenshot2" width="330" hspace="20">
-<img src="screenshot/screenshot3" width="330" hspace="20">
-<img src="screenshot/screenshot4" width="330" hspace="20">
-<img src="screenshot/screenshot5" width="330" hspace="20">
-<img src="screenshot/screenshot6" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot1.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot2.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot3.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot4.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot5.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot6.png" width="330" hspace="20">
 
 ## Setup
 1. **Clone the repo**
 ```
-$ git clone https://github.com/ZDfordream/tianyue.git
-$ cd tianyue
+$ git clone https://github.com/ZDfordream/Flutter-TianYue.git
+$ cd Flutter-TianYue
 $ flutter packages get
 ```
 2. **Running:**

@@ -1,27 +1,22 @@
-Language: [English](https://github.com/alibaba/flutter-go/blob/master/README-en.md) | [中文简体](https://github.com/alibaba/flutter-go/blob/master/README.md)
+Language: [English](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README-en.md) | [中文简体](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README.md)
 
 ## Flutter开发一款跨平台的开源漫画App
 仿腾讯动漫，抖音视频播放效果，小说阅读，我想，你需要的效果，此项目大致都有，项目持续更新中...
 
 ## screen shot
 
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot1.png">
-
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot2.png">
-
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot3.png">
-
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot4.png">
-
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot5.png">
-
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot6.png">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot1.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot2.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot3.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot4.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot5.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot6.png" width="330" hspace="20">
 
 ## Setup
 1. **Clone the repo**
 ```
-$ git clone https://github.com/ZDfordream/tianyue.git
-$ cd tianyue
+$ git clone https://github.com/ZDfordream/Flutter-TianYue.git
+$ cd Flutter-TianYue
 $ flutter packages get
 ```
 2. **Running:**
@@ -67,5 +62,4 @@ A permissive license whose main conditions require preservation of copyright and
 Contributors provide an express grant of patent rights.
 Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 ```
-
  
