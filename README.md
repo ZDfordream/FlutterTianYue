@@ -1,16 +1,16 @@
 Language: [English](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README-en.md) | [中文简体](https://github.com/ZDfordream/Flutter-TianYue/blob/master/README.md)
 
-## Flutter开发一款跨平台的开源漫画App
+## Flutter开发一款跨平台的开源漫画App (放慢脚步，给个star)
 仿腾讯动漫，抖音视频播放效果，小说阅读，我想，你需要的效果，此项目大致都有，项目持续更新中...
 
 ## screen shot
 
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot1.png" width="330" hspace="20">
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot2.png" width="330" hspace="20">
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot3.png" width="330" hspace="20">
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot4.png" width="330" hspace="20">
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot5.png" width="330" hspace="20">
-<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot6.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot1.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot2.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot3.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot4.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot5.png" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot6.png" width="330" hspace="20">
 
 ## Setup
 1. **Clone the repo**
