@@ -6,7 +6,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
 class Request {
-  static const String baseUrl = 'http://192.168.4.99/';
+  static const String baseUrl = 'http://192.168.4.32/';
 
   static Future<dynamic> get({String action, Map params}) async {
     return Request.mock(action: action, params: params);
@@ -17,7 +17,7 @@ class Request {
     HttpClient httpClient = new HttpClient();
     // 打开Http连接
     HttpClientRequest request = await httpClient.get(
-        "192.168.4.99", 8080, "/get_home_page/section_data");
+        "192.168.4.32", 8080, "/get_home_page/section_data");
     // 请求头
     request.headers.add("user-agent", "test");
     // 等待连接服务器
@@ -49,7 +49,7 @@ class Request {
 
   static Dio createDio() {
     var options = Options(
-      baseUrl: "http://192.168.4.99:8080",
+      baseUrl: "http://192.168.4.32:8080",
       connectTimeout: 10000,
       receiveTimeout: 100000,
       contentType: ContentType.json,
