@@ -42,7 +42,6 @@ $ flutter run
 | **shared_preferences**     | **本地数据缓存**     |
 | **fluttertoast**           | **toast**      |
 | **device_info**            | **设备信息**       |
-| **url_launcher**           | **启动外部浏览器**    |
 | **iconfont**               | **字库图标**       |
 | **share**                  | **系统分享**       |
 | **flutter_webview_plugin** | **全屏的webview** |

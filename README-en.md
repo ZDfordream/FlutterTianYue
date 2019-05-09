@@ -27,7 +27,7 @@ $ flutter run
 | **dio**                    | **net**       |
 | **shared_preferences**     | **local storage**     |
 | **fluttertoast**           | **toast**      |
-| **flutter_redux**          | **redux**      |
+| **iconfont**               | **ttf**       |
 | **device_info**            | **device info**       |
 | **share**                  | **share**       |
 | **video_player**           | **viedeo play**       |
