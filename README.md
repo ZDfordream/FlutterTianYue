@@ -5,12 +5,17 @@ Language: [English](https://github.com/alibaba/flutter-go/blob/master/README-en.
 
 ## screen shot
 
-<img src="screenshot/screenshot1" width="330" hspace="20">
-<img src="screenshot/screenshot2" width="330" hspace="20">
-<img src="screenshot/screenshot3" width="330" hspace="20">
-<img src="screenshot/screenshot4" width="330" hspace="20">
-<img src="screenshot/screenshot5" width="330" hspace="20">
-<img src="screenshot/screenshot6" width="330" hspace="20">
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot1.png">
+
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot2.png">
+
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot3.png">
+
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot4.png">
+
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot5.png">
+
+<img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/sceenshot6.png">
 
 ## Setup
 1. **Clone the repo**
@@ -62,4 +67,5 @@ A permissive license whose main conditions require preservation of copyright and
 Contributors provide an express grant of patent rights.
 Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 ```
+
  
