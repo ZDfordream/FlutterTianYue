@@ -10,8 +10,7 @@ class ComicCommentTabThree extends StatefulWidget {
   ComicCommentTabThreeState createState() => ComicCommentTabThreeState();
 }
 
-class ComicCommentTabThreeState extends State<ComicCommentTabThree>
-    with AutomaticKeepAliveClientMixin {
+class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
   List<ComicComment> commentList = [];
 
   @override
@@ -97,7 +96,4 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree>
       cacheExtent: 5,
     ));
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
