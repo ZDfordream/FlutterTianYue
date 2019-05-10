@@ -13,8 +13,8 @@
 ## Setup
 1. **Clone the repo**
 ```
-$ git clone https://github.com/ZDfordream/Flutter-TianYue.git
-$ cd Flutter-TianYue
+$ git clone https://github.com/ZDfordream/FlutterTianYue.git
+$ cd FlutterTianYue
 $ flutter packages get
 ```
 2. **Running:**
