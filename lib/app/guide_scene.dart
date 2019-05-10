@@ -104,8 +104,6 @@ class GuideSceneState extends State<GuideScene> {
         body: Swiper(
             autoStart: false,
             circular: false,
-            //pageview修改源码，加个属性
-            cacheExtent: 100,
             indicator: CircleSwiperIndicator(
                 radius: 2,
                 spacing: 4,
