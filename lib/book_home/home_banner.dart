@@ -33,8 +33,6 @@ class HomeBanner extends StatelessWidget {
         aspectRatio: 2,
         autoPlayInterval: const Duration(seconds: 5),
         autoPlay: true,
-        //pageview修改源码，加个属性
-        cacheExtent: 100,
       ),
     );
   }

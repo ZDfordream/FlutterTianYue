@@ -82,7 +82,6 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     if (CollectionsUtils.isEmpty(commentList)) {
       return Container();
     }
