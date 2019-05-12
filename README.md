@@ -22,6 +22,7 @@ $ flutter packages get
 2. **Running:**
 ```
 $ flutter run
+$ 提示：如果出现build失败，再执行一次
 ```
 
 ## 主要实现的功能有：

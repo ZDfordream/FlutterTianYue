@@ -20,6 +20,7 @@ $ flutter packages get
 2. **Running:**
 ```
 $ flutter run
+$ Tip:if build fail,just build again.
 ```
 ### Third-party framework
 | 库                          | 功能             |
