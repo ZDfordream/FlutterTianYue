@@ -38,7 +38,6 @@ class _DrawProgress extends CustomPainter {
     angle = angle * (-1);
     double startAngle = -math.pi / 2;
     double sweepAngle = math.pi * angle / 180;
-    print("draw paint-------------------= $startAngle, $sweepAngle");
     //canvas.drawArc(rect, startAngle, sweepAngle, false, progressPaint);
     Path path = new Path();
     path.arcTo(rect, startAngle, sweepAngle, true);
@@ -84,7 +83,6 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
   @override
   void initState() {
     super.initState();
-    print('initState----------------------');
     animationController =
         new AnimationController(vsync: this, duration: widget.duration);
     animationController.addListener(_change);
@@ -94,19 +92,16 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
   @override
   void didUpdateWidget(SkipDownTimeProgress oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('didUpdateWidget----------------------');
   }
 
   @override
   void dispose() {
     super.dispose();
-    print('dispose----------------------');
     animationController.dispose();
   }
 
   void _onSkipClick() {
     if (widget.clickListener != null) {
-      print('skip onclick ---------------');
       widget.clickListener.onSkipClick();
     }
   }
