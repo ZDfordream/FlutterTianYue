@@ -51,7 +51,7 @@ class Request {
     var options = Options(
       baseUrl: "http://192.168.4.32:8080",
       connectTimeout: 10000,
-      receiveTimeout: 100000,
+      receiveTimeout: 10000,
       contentType: ContentType.json,
     );
     return Dio(options);

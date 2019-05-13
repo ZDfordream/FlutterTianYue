@@ -46,7 +46,6 @@ class ComicDetailTabOne extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
         /// 处理滑动冲突
-        /// pageView设置此属性可以禁止左右滑动
         physics: NeverScrollableScrollPhysics());
   }
 }

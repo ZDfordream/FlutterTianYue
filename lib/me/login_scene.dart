@@ -11,19 +11,19 @@ class LoginScene extends StatefulWidget {
 }
 
 class LoginSceneState extends State {
-  TextEditingController phoneEditer = TextEditingController();
-  TextEditingController codeEditer = TextEditingController();
+  TextEditingController phoneEditor = TextEditingController();
+  TextEditingController codeEditor = TextEditingController();
   int coldDownSeconds = 0;
   Timer timer;
 
   fetchSmsCode() async {
-    if (phoneEditer.text.length == 0) {
+    if (phoneEditor.text.length == 0) {
       return;
     }
     try {
       await Request.post(
         action: 'sms',
-        params: {'phone': phoneEditer.text, 'type': 'login'},
+        params: {'phone': phoneEditor.text, 'type': 'login'},
       );
       setState(() {
         coldDownSeconds = 60;
@@ -35,8 +35,8 @@ class LoginSceneState extends State {
   }
 
   login() async {
-    var phone = phoneEditer.text;
-    var code = codeEditer.text;
+    var phone = phoneEditor.text;
+    var code = codeEditor.text;
 
     try {
       var response = await Request.post(action: 'login', params: {
@@ -77,7 +77,7 @@ class LoginSceneState extends State {
         borderRadius: BorderRadius.circular(5),
       ),
       child: TextField(
-        controller: phoneEditer,
+        controller: phoneEditor,
         keyboardType: TextInputType.phone,
         style: TextStyle(fontSize: 14, color: TYColor.darkGray),
         decoration: InputDecoration(
@@ -100,7 +100,7 @@ class LoginSceneState extends State {
         children: <Widget>[
           Flexible(
             child: TextField(
-              controller: codeEditer,
+              controller: codeEditor,
               keyboardType: TextInputType.phone,
               style: TextStyle(fontSize: 14, color: TYColor.darkGray),
               decoration: InputDecoration(
