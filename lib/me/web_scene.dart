@@ -48,7 +48,7 @@ class _WebSceneState extends State<WebScene> {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              Share.share(this.widget.url);
+              Share.share('https://github.com/ZDfordream/FlutterTianYue');
             },
             child: Image.asset('img/icon_menu_share.png'),
           ),
