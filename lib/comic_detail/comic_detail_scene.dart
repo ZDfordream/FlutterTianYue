@@ -51,9 +51,6 @@ class ComicDetailState extends State<ComicDetailScene>
   @override
   void initState() {
     super.initState();
-    eventBus.on(EventDetailLoadMore, (arg) {
-      setState(() {});
-    });
 
     Timer(Duration(milliseconds: 1000), () {
       Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
@@ -69,7 +66,6 @@ class ComicDetailState extends State<ComicDetailScene>
   void dispose() {
     super.dispose();
     _scrollController.dispose();
-    eventBus.off(EventDetailLoadMore);
   }
 
   List<Widget> getTabList() {
