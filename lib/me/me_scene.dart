@@ -96,7 +96,7 @@ class MeScene extends StatelessWidget {
             },
           ),
           MeCell(
-            title: '网页',
+            title: 'Github网页',
             iconName: 'img/me_feedback.png',
             onPressed: () {
               AppNavigator.pushWeb(context, 'https://github.com/ZDfordream/FlutterTianYue', 'Github');
