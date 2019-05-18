@@ -1,6 +1,8 @@
 ## An open source App developed by Flutter，Provide richer functionality（give me a star）
    readbook,comic,videoplay,if you want to get started with flutter,just learn this project is a good choice.
 
+#  [WeiXinMiniProgram edition](https://github.com/ZDfordream/comic-wx)(worth reading)
+
 ## screen shot
 
 <img src="https://github.com/ZDfordream/Flutter-TianYue/blob/master/screenshot/screenshot1.png" width="330" hspace="20">
