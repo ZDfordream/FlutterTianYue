@@ -30,6 +30,13 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
         _number = _count;
       });
     });
+
+    /// 演示异步编程future的用法
+    Future.delayed(Duration(seconds: 2), () {return "number";})
+        .then((val) => print('接收到数据:' + val))
+        .whenComplete(() => print('complete'))
+        .catchError(() => print('error'));
+
     super.initState();
   }
 

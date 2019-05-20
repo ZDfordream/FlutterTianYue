@@ -10,7 +10,7 @@ class CounterStream extends StreamBase {
   get streamOut => _controller.stream;
 
   void increment(int count) {
-    _sink.add(++count);
+    _controller.add(++count);
   }
 
   void dispose() {
