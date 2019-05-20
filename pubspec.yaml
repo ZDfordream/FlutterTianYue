@@ -31,6 +31,7 @@ dependencies:
   device_info: ^0.4.0
   flukit: ^1.0.0
   video_player: ^0.10.0+2
+  rxdart: ^0.22.0
 
 dev_dependencies:
   flutter_test:

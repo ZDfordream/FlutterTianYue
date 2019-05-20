@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:tianyue/public.dart';
 import 'package:tianyue/stream/CounterStream.dart';
 import 'package:tianyue/widget/loading_indicator.dart';
@@ -25,17 +26,25 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
 
   @override
   void initState() {
-    counterStream.streamOut.listen((_count) {
+      counterStream.streamOut.listen((_count) {
       setState(() {
         _number = _count;
       });
     });
 
     /// 演示异步编程future的用法
-    Future.delayed(Duration(seconds: 2), () {return "number";})
+    Future.delayed(Duration(seconds: 2), () {
+      return "number";
+    })
         .then((val) => print('接收到数据:' + val))
         .whenComplete(() => print('complete'))
         .catchError(() => print('error'));
+
+    // stream demo
+    _publishSubjectDemo();
+
+    // rxDart demo
+    _rxDartDemo();
 
     super.initState();
   }
@@ -67,5 +76,37 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void _publishSubjectDemo() {
+    final subject = PublishSubject<int>();
+    subject.stream.listen((_count) {
+      print(_count);
+    });
+    subject.add(1);
+    subject.add(2);
+
+    /// 仅仅能接收到3
+    subject.stream.listen((_count) {
+      print(_count);
+    });
+    subject.add(3);
+    subject.close();
+  }
+
+  void _rxDartDemo() {
+    // 1,2,3,4 doOnData
+    // 3,4,5,6 map
+    // 5,6     where
+    // 100,5,6 mergeWith
+    Observable.range(1, 4)
+        .map((val) => val + 2)
+        .where((val) => val > 4)
+        .distinct()
+        .mergeWith([Observable.just(100)])
+        .doOnData((_) => print('next data'))
+        .doOnDone(() => print("all done--完成！"))
+        .listen((val) =>
+        print('Observable收到数据:' + val.toString()));
   }
 }
