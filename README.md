@@ -3,7 +3,7 @@ Language: [English](https://github.com/ZDfordream/Flutter-TianYue/blob/master/RE
 ## Flutter开发一款跨平台的开源漫画App (放慢脚步，给个star)
 仿腾讯动漫，抖音视频播放效果，小说阅读，我猜想，你所需要的效果，此项目大致都有，项目持续更新中...
 
-另有[微信小程序版本](https://github.com/ZDfordream/comic-wx)(值得一看)
+另有[微信小程序版本](https://github.com/ZDfordream/comic-wx)(仿腾讯动漫，值得一看)
 
 ## screen shot
 
