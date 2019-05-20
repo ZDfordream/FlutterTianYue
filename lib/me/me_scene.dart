@@ -5,6 +5,7 @@ import 'package:tianyue/me/PaintWidgetScene.dart';
 import 'package:tianyue/me/ScrollDemoScene.dart';
 import 'package:tianyue/me/map_scene.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/stream/StreamCounterScene.dart';
 
 import 'me_cell.dart';
 import 'me_header.dart';
@@ -42,9 +43,11 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '我的收藏',
+            title: 'Stream Api',
             iconName: 'img/me_favorite.png',
-            onPressed: () {},
+            onPressed: () {
+              AppNavigator.push(context, StreamCounterScene());
+            },
           ),
           MeCell(
             title: 'EventChannel示例',
@@ -99,7 +102,8 @@ class MeScene extends StatelessWidget {
             title: 'Github网页',
             iconName: 'img/me_feedback.png',
             onPressed: () {
-              AppNavigator.pushWeb(context, 'https://github.com/ZDfordream/FlutterTianYue', 'Github');
+              AppNavigator.pushWeb(context,
+                  'https://github.com/ZDfordream/FlutterTianYue', 'Github');
             },
           ),
         ],
