@@ -56,10 +56,10 @@ class ComicDetailState extends State<ComicDetailScene>
       Screen.updateStatusBarStyle(SystemUiOverlayStyle.dark);
     });
 
-    tabList = getTabList();
+    tabList = _getTabList();
     _tabController = TabController(
         vsync: this, initialIndex: _currentIndex, length: tabList.length);
-    fetchData();
+    _fetchData();
   }
 
   @override
@@ -68,7 +68,7 @@ class ComicDetailState extends State<ComicDetailScene>
     _scrollController.dispose();
   }
 
-  List<Widget> getTabList() {
+  List<Widget> _getTabList() {
     return titleList
         .map((item) => Text(
               '$item',
@@ -76,7 +76,7 @@ class ComicDetailState extends State<ComicDetailScene>
         .toList();
   }
 
-  Future<void> fetchData() async {
+  Future<void> _fetchData() async {
     try {
       var responseJson = await Request.get(action: 'home_comic_overview');
       comicOverview = ComicOverview.fromJson(responseJson);
@@ -97,10 +97,10 @@ class ComicDetailState extends State<ComicDetailScene>
   _retry() {
     pageState = PageState.Loading;
     setState(() {});
-    fetchData();
+    _fetchData();
   }
 
-  Widget getBottomReader() {
+  Widget _getBottomReader() {
     return Container(
       child: Row(
         children: <Widget>[
@@ -144,7 +144,7 @@ class ComicDetailState extends State<ComicDetailScene>
     );
   }
 
-  Widget buildTabBar() {
+  Widget _buildTabBar() {
     return TabBar(
         tabs: tabList,
         labelPadding: EdgeInsets.symmetric(horizontal: 25),
@@ -192,7 +192,7 @@ class ComicDetailState extends State<ComicDetailScene>
                                     child: Container(
                                       padding: EdgeInsets.only(
                                           top: Screen.topSafeHeight),
-                                      child: buildTabBar(),
+                                      child: _buildTabBar(),
                                       color: TYColor.white,
                                       alignment: Alignment.center,
                                     ))),
@@ -205,7 +205,7 @@ class ComicDetailState extends State<ComicDetailScene>
                     ),
                     Container(
                         width: width, height: 0.7, color: Color(0xffe1e1e1)),
-                    getBottomReader(),
+                    _getBottomReader(),
                   ],
                 )),
             LoadingIndicator(
