@@ -5,6 +5,7 @@ import 'package:tianyue/me/PaintWidgetScene.dart';
 import 'package:tianyue/me/ScrollDemoScene.dart';
 import 'package:tianyue/me/map_scene.dart';
 import 'package:tianyue/public.dart';
+import 'package:tianyue/stream/BlocScene.dart';
 import 'package:tianyue/stream/StreamCounterScene.dart';
 
 import 'me_cell.dart';
@@ -38,9 +39,11 @@ class MeScene extends StatelessWidget {
             onPressed: () {},
           ),
           MeCell(
-            title: '绑兑换码',
+            title: 'Bloc示例',
             iconName: 'img/me_coupon.png',
-            onPressed: () {},
+            onPressed: () {
+              AppNavigator.push(context, BlocScene());
+            },
           ),
           MeCell(
             title: 'Stream Api',
