@@ -11,7 +11,7 @@ class CounterWidget extends StatelessWidget {
       body: Center(
         child: StreamBuilder<int>(
           // StreamBuilder控件中没有任何处理业务逻辑的代码
-            stream: bloc.outCounter,
+            stream: bloc.outStream,
             initialData: 0,
             builder: (BuildContext context, AsyncSnapshot<int> snapshot){
               return Text('You hit me: ${snapshot.data} times');
@@ -21,7 +21,7 @@ class CounterWidget extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: (){
-          bloc.incrementCounter.add(null);
+          bloc.inputSink.add(null);
         },
       ),
     );

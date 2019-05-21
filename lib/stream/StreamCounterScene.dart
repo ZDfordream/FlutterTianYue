@@ -34,6 +34,8 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
 
     /// 演示异步编程future的用法
     Future.delayed(Duration(seconds: 2), () {
+      // 执行一些列操作
+      // ...
       return "number";
     })
         .then((val) => print('接收到数据:' + val))
