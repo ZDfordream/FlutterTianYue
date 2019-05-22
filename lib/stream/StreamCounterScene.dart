@@ -26,21 +26,14 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
 
   @override
   void initState() {
-      counterStream.streamOut.listen((_count) {
+    counterStream.streamOut.listen((_count) {
       setState(() {
         _number = _count;
       });
     });
 
-    /// 演示异步编程future的用法
-    Future.delayed(Duration(seconds: 2), () {
-      // 执行一些列操作
-      // ...
-      return "number";
-    })
-        .then((val) => print('接收到数据:' + val))
-        .whenComplete(() => print('complete'))
-        .catchError(() => print('error'));
+    // future demo
+    _futureDemo();
 
     // stream demo
     _publishSubjectDemo();
@@ -80,20 +73,27 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
     );
   }
 
-  void _publishSubjectDemo() {
-    final subject = PublishSubject<int>();
-    subject.stream.listen((_count) {
-      print(_count);
-    });
-    subject.add(1);
-    subject.add(2);
+  /// 演示异步编程future的用法
+  void _futureDemo() {
+    Future.delayed(Duration(seconds: 2), () {
+      // 执行一些列操作
+      // ...
+      return "number";
+    })
+        .then((val) => print('接收到数据:' + val))
+        .whenComplete(() => print('complete'))
+        .catchError(() => print('error'));
+  }
 
-    /// 仅仅能接收到3
-    subject.stream.listen((_count) {
-      print(_count);
+  void _publishSubjectDemo() {
+    final behavior = BehaviorSubject<int>();
+    behavior.add(1);
+    behavior.add(2);
+    behavior.stream.listen((_count) {
+      print("BehaviorSubject:" + _count.toString());
     });
-    subject.add(3);
-    subject.close();
+    behavior.add(3);
+    behavior.close();
   }
 
   void _rxDartDemo() {
@@ -108,7 +108,6 @@ class _StreamCounterSceneState extends State<StreamCounterScene> {
         .mergeWith([Observable.just(100)])
         .doOnData((_) => print('next data'))
         .doOnDone(() => print("all done--完成！"))
-        .listen((val) =>
-        print('Observable收到数据:' + val.toString()));
+        .listen((val) => print('Observable收到数据:' + val.toString()));
   }
 }
