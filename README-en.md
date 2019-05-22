@@ -34,6 +34,7 @@ $ Tip:if build fail,just build again.
 | **device_info**            | **device info**       |
 | **share**                  | **share**       |
 | **video_player**           | **viedeo play**       |
+| **rxdart**                 | **rxdart** |
 
 # **if this project can help you, I hope you can give me a star~**
 
