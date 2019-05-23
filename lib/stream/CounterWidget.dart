@@ -6,7 +6,6 @@ class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final IncrementBloc bloc = BlocProvider.of<IncrementBloc>(context);
-
     return Scaffold(
       body: Center(
         child: StreamBuilder<int>(
