@@ -23,6 +23,7 @@ $ flutter packages get
 ```
 $ flutter run
 $ Tip:if build fail,just build again.
+$ flutter version : 1.0.0
 ```
 ### Third-party framework
 | 库                          | 功能             |

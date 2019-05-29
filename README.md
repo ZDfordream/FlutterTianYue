@@ -25,6 +25,7 @@ $ flutter packages get
 ```
 $ flutter run
 $ 提示：如果出现build失败，再执行一次
+$ flutter版本1.0.0
 ```
 
 ## 主要实现的功能有：
