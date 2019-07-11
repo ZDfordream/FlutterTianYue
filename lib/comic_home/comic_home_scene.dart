@@ -74,7 +74,7 @@ class ComicHomeState extends State<ComicHomeScene> with AutomaticKeepAliveClient
         pageState = PageState.Content;
       });
 
-      var responseJson = await Request.get(action: 'home_comic');
+      var responseJson = await Request.get(url: 'home_comic');
       banner.clear();
       responseJson["banner"].forEach((data) {
         banner.add(data);

@@ -21,7 +21,7 @@ class ComicCommentTabThreeState extends State<ComicCommentTabThree> {
 
   Future<void> _fetchCommentData() async {
     try {
-      var responseJson = await Request.get(action: 'home_comic_comment');
+      var responseJson = await Request.get(url: 'home_comic_comment');
       responseJson["commentList"].forEach((data) {
         commentList.add(ComicComment.fromJson(data));
       });

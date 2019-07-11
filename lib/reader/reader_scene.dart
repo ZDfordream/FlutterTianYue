@@ -66,7 +66,7 @@ class ReaderSceneState extends State<ReaderScene>{
       pageState = PageState.Content;
     });
 
-    List<dynamic> chaptersResponse = await Request.get(action: 'catalog');
+    List<dynamic> chaptersResponse = await Request.get(url: 'catalog');
     chaptersResponse.forEach((data) {
       chapters.add(Chapter.fromJson(data));
     });

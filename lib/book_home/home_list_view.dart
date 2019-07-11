@@ -67,7 +67,7 @@ class HomeListViewState extends State<HomeListView>
         default:
           break;
       }
-      var responseJson = await Request.get(action: action);
+      var responseJson = await Request.get(url: action);
       List moduleData = responseJson['module'];
       List<HomeModule> modules = [];
       moduleData.forEach((data) {

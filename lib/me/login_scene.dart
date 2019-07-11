@@ -22,7 +22,7 @@ class LoginSceneState extends State {
     }
     try {
       await Request.post(
-        action: 'sms',
+        url: 'sms',
         params: {'phone': phoneEditor.text, 'type': 'login'},
       );
       setState(() {
@@ -39,7 +39,7 @@ class LoginSceneState extends State {
     var code = codeEditor.text;
 
     try {
-      var response = await Request.post(action: 'login', params: {
+      var response = await Request.post(url: 'login', params: {
         'phone': phone,
         'code': code,
       });

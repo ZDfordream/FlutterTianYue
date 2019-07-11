@@ -35,7 +35,7 @@ class ComicDetailTabState extends State<ComicDetailTabContainer> {
 
   Future<void> fetchDetailData() async {
     try {
-      var responseJson = await Request.get(action: 'home_comic_detail');
+      var responseJson = await Request.get(url: 'home_comic_detail');
       comicDetail = ComicDetail.fromJson(responseJson);
       setState(() {
         _comicDetailReady = true;
@@ -47,7 +47,7 @@ class ComicDetailTabState extends State<ComicDetailTabContainer> {
 
   Future<void> fetchChapterData() async {
     try {
-      var responseJson = await Request.get(action: 'home_comic_chapter');
+      var responseJson = await Request.get(url: 'home_comic_chapter');
       comicChapter = ComicChapter.fromJson(responseJson);
       setState(() {
         _comicChapterReady = true;

@@ -78,7 +78,7 @@ class ComicDetailState extends State<ComicDetailScene>
 
   Future<void> _fetchData() async {
     try {
-      var responseJson = await Request.get(action: 'home_comic_overview');
+      var responseJson = await Request.get(url: 'home_comic_overview');
       comicOverview = ComicOverview.fromJson(responseJson);
 
       await Future.delayed(Duration(milliseconds: 2000), () {

@@ -83,10 +83,10 @@ class NovelDetailSceneState extends State<NovelDetailScene> {
       var novelId = this.widget.novelId;
 
       var novelResponse =
-          await Request.post(action: 'novel_detail', params: {'id': novelId});
+          await Request.post(url: 'novel_detail', params: {'id': novelId});
 
       var commentsResponse =
-          await Request.post(action: 'novel_comment', params: {'id': novelId});
+          await Request.post(url: 'novel_comment', params: {'id': novelId});
 
       await Future.delayed(Duration(milliseconds: 2000), () {
         pageState = PageState.Content;
@@ -98,7 +98,7 @@ class NovelDetailSceneState extends State<NovelDetailScene> {
       });
 
       var recommendResponse = await Request.post(
-          action: 'novel_recommend', params: {'id': novelId});
+          url: 'novel_recommend', params: {'id': novelId});
       List<Novel> recommendNovels = [];
       recommendResponse.forEach((data) {
         recommendNovels.add(Novel.fromJson(data));

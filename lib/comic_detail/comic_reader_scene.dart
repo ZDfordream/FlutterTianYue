@@ -44,7 +44,7 @@ class ComicReaderState extends State<ComicReaderScene> with RouteAware {
   Future<void> fetchData() async {
     try {
       imageList.clear();
-      var responseJson = await Request.get(action: 'home_comic_image_list');
+      var responseJson = await Request.get(url: 'home_comic_image_list');
       responseJson["comicPictureList"].forEach((data) {
         imageList.add(data);
       });
