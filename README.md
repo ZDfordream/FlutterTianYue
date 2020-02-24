@@ -59,8 +59,7 @@ $ flutter版本1.0.0
 
 # 感谢
 
-  此项目参考学习了https://github.com/huanxsd/flutter_shuqi，并在此基础上，加以扩充，感谢此作者
-
+  此项目参考学习了[高仿书旗](https://github.com/huanxsd/flutter_shuqi），并在此基础上扩充，感谢作者
 # 默认条约
 
    此项目仅供大家交流沟通使用，不得用于任何商业以及利益活动。
